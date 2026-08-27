@@ -1,0 +1,176 @@
+---
+import Acomodacoes from "./Acomodacoes.tsx";
+import Avaliacoes from "./Avaliacoes.tsx";
+import Comodidades from "./Comodidades.tsx";
+import ConceptBanner from "./ConceptBanner.tsx";
+import CTAFinal from "./CTAFinal.tsx";
+import Cursor from "./Cursor.tsx";
+import Ecoturismo from "./Ecoturismo.tsx";
+import Eventos from "./Eventos.tsx";
+import FAQ from "./FAQ.tsx";
+import Footer from "./Footer.tsx";
+import Hero from "./Hero.tsx";
+import Localizacao from "./Localizacao.tsx";
+import Manifesto from "./Manifesto.tsx";
+import Navbar from "./Navbar.tsx";
+import PetFriendly from "./PetFriendly.tsx";
+import ScrollProgress from "./ScrollProgress.tsx";
+import SmoothScroll from "./SmoothScroll.tsx";
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+
+<SmoothScroll client:load />
+<Cursor client:load />
+<ScrollProgress client:load />
+<ConceptBanner client:load />
+
+<Navbar client:load />
+
+<main id="conteudo">
+  <Hero client:load />
+  <Manifesto client:visible />
+  <Acomodacoes client:visible />
+  <Comodidades client:visible />
+  <PetFriendly client:visible />
+  <Ecoturismo client:visible />
+  <Eventos client:visible />
+  <Avaliacoes client:visible />
+  <FAQ client:visible />
+  <Localizacao client:visible />
+  <CTAFinal client:visible />
+</main>
+
+<Footer client:visible />
+
+<style is:global>
+  :root {
+    /* Canvas & surfaces — warm paper, field-journal */
+    --color-canvas: #f3ecdb;
+    --color-surface: #fbf6ea;
+    --color-surface-elevated: #fffdf6;
+
+    /* Forest system — primary */
+    --color-forest: #1f3a2e;
+    --color-forest-deep: #14271f;
+    --color-moss: #3d5d49;
+    --color-leaf: #5a7d52;
+
+    /* Accents — cacao, sunset, golden, sea */
+    --color-cacao: #6b4423;
+    --color-sunset: #e07a3c;
+    --color-sunset-deep: #c25f28;
+    --color-sunset-ink: #9c4d1c; /* sunset escuro para texto em fundos claros — 5.15:1 em #f3ecdb */
+    --color-sunset-deep-ink: #8b4419; /* sunset muito escuro para badges em fundos claros — 6.7:1 em #fbf6ea */
+    --color-golden: #e8b547;
+    --color-sea: #2c6e7f;
+    --color-sea-deep: #1f5663;
+
+    /* Text */
+    --color-text: #2a2418;
+    --color-text-muted: #6b5d45;
+    --color-text-soft: #8a7c63;
+
+    /* Lines */
+    --color-border: #d9cfb8;
+    --color-border-soft: #e6dec9;
+
+    /* Typography */
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+    /* Radii */
+    --radius-control: 999px;
+    --radius-card: 18px;
+    --radius-stage: 28px;
+
+    /* Shadows */
+    --shadow-subtle: 0 1px 2px rgba(31, 58, 46, 0.06), 0 8px 24px -12px rgba(31, 58, 46, 0.18);
+    --shadow-elevated: 0 2px 6px rgba(31, 58, 46, 0.08), 0 24px 60px -24px rgba(31, 58, 46, 0.32);
+    --shadow-glow: 0 0 0 1px rgba(224, 122, 60, 0.18), 0 18px 50px -18px rgba(224, 122, 60, 0.45);
+  }
+
+  /* Override site-factory body padding-top (ConceptBanner floats bottom-right) */
+  body {
+    padding-top: 0 !important;
+    background-color: var(--color-canvas);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display headings — Fraunces */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  /* Field-journal eyebrow label */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-cacao);
+  }
+
+  /* Field-journal entry number — usa sunset-ink por defeito (fundos claros).
+     Secções escuras fazem override com style={{ color: 'var(--color-sunset)' }}. */
+  .field-no {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-sunset-ink);
+  }
+
+  ::selection {
+    background: var(--color-sunset);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sunset);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Hide native cursor only when custom cursor active (set by JS on body) */
+  body.cursor-ready,
+  body.cursor-ready * {
+    cursor: none !important;
+  }
+  body.cursor-ready input,
+  body.cursor-ready textarea,
+  body.cursor-ready [contenteditable="true"] {
+    cursor: text !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* Paper grain texture utility */
+  .paper-grain {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(107, 68, 35, 0.04) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(31, 58, 46, 0.04) 0, transparent 40%);
+  }
+
+  /* Botanical hairline divider */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+  }
+</style>

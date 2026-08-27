@@ -1,0 +1,22 @@
+---
+import '../styles/tailwind.css'
+interface Props {
+  title?: string
+  description?: string
+}
+const { title = 'Landing Page', description = '' } = Astro.props
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="googlebot" content="noindex,nofollow,noarchive" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

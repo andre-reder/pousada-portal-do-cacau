@@ -1,0 +1,98 @@
+@layer reset, theme, base, components, utilities, tokens, responsive, motion;
+@import 'tailwindcss';
+@import './global.css';
+
+/* The generated/ and generated-preview/ directories are gitignored, so Tailwind
+ * v4's automatic content detection skips them. Explicitly add them as sources
+ * so utility classes used in generated landing pages are included in the build
+ * and in the dev server. */
+@source '../components';
+;
+
+@layer base {
+  :root {
+    --surface-light: #ffffff;
+    --surface-elevated-light: #f5f5f4;
+    --text-on-light: #1c1917;
+    --text-muted-on-light: #44403c;
+    --heading-on-light: #0c0a09;
+    --accent-text-on-light: #7c2d12;
+    --surface-dark: #171412;
+    --surface-elevated-dark: #292524;
+    --text-on-dark: #fafaf9;
+    --text-muted-on-dark: #d6d3d1;
+    --heading-on-dark: #ffffff;
+    --accent-text-on-dark: #fdba74;
+    --accent-visual: var(--color-accent, #c2410c);
+    --border-on-light: #78716c;
+    --border-on-dark: #a8a29e;
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: Inter, Avenir, 'Helvetica Neue', Arial, sans-serif;
+    --font-detail: 'Arial Narrow', Inter, Avenir, sans-serif;
+    --radius-control: 999px;
+    --radius-card: 0.35rem;
+    --radius-stage: clamp(0.65rem, 1.4vw, 1.25rem);
+    --shadow-subtle: 0 1px 0 color-mix(in srgb, var(--color-text) 8%, transparent);
+    --shadow-elevated: 0 2rem 6rem color-mix(in srgb, var(--color-text) 14%, transparent);
+    --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-accent) 40%, transparent);
+    --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
+    --content-width: 90rem;
+    --notice-height: 0rem;
+    --header-height: 5.25rem;
+  }
+
+  html {
+    scroll-behavior: auto;
+    background: var(--color-canvas, var(--surface-light));
+    color: var(--color-text, var(--text-on-light));
+    font-family: var(--font-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-width: 20rem;
+    overflow-x: clip;
+    margin: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent, #2563eb);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    color: var(--color-accent-contrast, #ffffff);
+    background: var(--color-accent, #2563eb);
+  }
+}
+
+@layer components {
+  .surface-light {
+    --local-surface: var(--surface-light);
+    --local-surface-elevated: var(--surface-elevated-light);
+    --local-heading: var(--heading-on-light);
+    --local-text: var(--text-on-light);
+    --local-muted: var(--text-muted-on-light);
+    --local-accent-text: var(--accent-text-on-light);
+    --local-border: var(--border-on-light);
+    color: var(--local-text);
+    background-color: var(--local-surface);
+  }
+
+  .surface-dark {
+    --local-surface: var(--surface-dark);
+    --local-surface-elevated: var(--surface-elevated-dark);
+    --local-heading: var(--heading-on-dark);
+    --local-text: var(--text-on-dark);
+    --local-muted: var(--text-muted-on-dark);
+    --local-accent-text: var(--accent-text-on-dark);
+    --local-border: var(--border-on-dark);
+    color: var(--local-text);
+    background-color: var(--local-surface);
+  }
+
+  :where(.surface-light, .surface-dark) :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--local-heading);
+  }
+}
