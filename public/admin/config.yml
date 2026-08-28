@@ -14,8 +14,9 @@ backend:
   branch: main
 
 # ─── Media ───
-# Images uploaded through the CMS go to the assets folder
-media_folder: "assets/blog"
+# Images uploaded through the CMS go to public/assets/blog so they're
+# served as static files by Astro without needing image optimization.
+media_folder: "public/assets/blog"
 public_folder: "/assets/blog"
 
 # ─── Collections ───
