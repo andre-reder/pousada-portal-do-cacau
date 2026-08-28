@@ -1,0 +1,180 @@
+---
+import {
+Check,
+DoorOpen,
+Home,
+PawPrint,
+Snowflake,
+Sparkles,
+Wifi,
+Wind,
+X as XIcon,
+} from "lucide-react";
+import Acomodacoes from "../components/Acomodacoes.tsx";
+import CTAFinal from "../components/CTAFinal.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const INCLUDED = [
+  { icon: "Snowflake", label: "Ar-condicionado" },
+  { icon: "Wind", label: "Ventilador de teto" },
+  { icon: "Wifi", label: "Wi-Fi em toda a estrutura" },
+  { icon: "Sparkles", label: "Aquecimento central a gás" },
+  { icon: "DoorOpen", label: "Frigobar" },
+  { icon: "PawPrint", label: "Preparado para pets" },
+];
+
+const COMPARE = [
+  { attr: "Tipo", values: ["Suíte", "Suíte", "Bangalô", "Bangalô"] },
+  { attr: "Tamanho", values: ["26 m²", "26 m²", "72 m² · duplex", "72 m² · duplex"] },
+  { attr: "Acomoda", values: ["3 hóspedes", "2 hóspedes", "até 4 hóspedes", "até 4 hóspedes"] },
+  { attr: "Camas", values: ["King + solteiro", "King Size", "Casal + sofá bi-cama", "Casal + sofá bi-cama"] },
+  { attr: "TV", values: ['32" LCD', '42" LCD', '32"', "SKY"] },
+  { attr: "Ar-condicionado", values: ["Sim", "Split", "Sim", "No quarto do casal"] },
+  { attr: "Cozinha equipada", values: [false, false, true, true] },
+  { attr: "Varanda / churrasqueira", values: [false, false, true, true] },
+  { attr: "Piso", values: ["Térreo/superior", "Superior", "Duplex", "Duplex"] },
+  { attr: "Destaque", values: ["Aconchego essencial", "Preferida dos casais", "Sua casa na mata", "Espaço e independência"] },
+];
+const NAMES = ["Suíte Original", "Suíte Plus", "Bangalô Original", "Bangalô Plus"];
+---
+
+<SectionLayout
+  title="Acomodações"
+  eyebrow="Onde você vai dormir"
+  description="Suítes e bangalôs pensados para o seu conforto e o do seu pet — com ar-condicionado, Wi-Fi, aquecimento central a gás e toda a estrutura da pousada à disposição."
+>
+  {/* Seção principal — galerias e cards */}
+  <Acomodacoes client:load />
+
+  {/* Comparativo */}
+  <section id="comparativo" class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-14">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">i</span>
+          <span class="eyebrow">Comparativo · lado a lado</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.6rem] lg:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Escolha pelo tamanho,
+          <span class="block italic text-[#9c4d1c]">pelo ritmo, pela família.</span>
+        </h2>
+      </div>
+
+      {/* Tabela responsiva */}
+      <div class="overflow-x-auto rounded-2xl border border-[#d9cfb8] shadow-(--shadow-subtle)">
+        <table class="w-full min-w-160 border-collapse text-left">
+          <thead>
+            <tr class="bg-[#1f3a2e] text-[#f3ecdb]">
+              <th class="px-5 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.18em]">Atributo</th>
+              {NAMES.map((n, i) => (
+                <th class="px-5 py-4">
+                  <span class="block font-display text-base" style="font-family: var(--font-display); font-weight: 400;">{n}</span>
+                  <span class={`mt-1 block text-[0.62rem] font-semibold uppercase tracking-[0.14em] ${i === 1 ? 'text-[#e8b547]' : 'text-[#f3ecdb]/60'}`}>
+                    {i === 1 ? "Preferida dos casais" : ["Essencial", "", "Casa na mata", "Independência"][i]}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {COMPARE.map((row, ri) => (
+              <tr class={ri % 2 === 0 ? "bg-[#fbf6ea]" : "bg-[#f3ecdb]"}>
+                <td class="px-5 py-3.5 text-[0.78rem] font-semibold text-[#3d5d49]">{row.attr}</td>
+                {row.values.map((v) => (
+                  <td class="px-5 py-3.5 text-[0.82rem] text-[#2a2418]">
+                    {v === true ? (
+                      <Check size={16} class="text-[#3d5d49]" />
+                    ) : v === false ? (
+                      <XIcon size={16} class="text-[#8a7c63]/50" />
+                    ) : (
+                      <span>{v}</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-[0.78rem] leading-relaxed text-[#6b5d45]">
+        As fotos de cada acomodação estão na seção acima — toque em “Ver fotos”
+        para abrir a galeria completa.
+      </p>
+    </div>
+  </section>
+
+  {/* Incluso em todas */}
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-12">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">ii</span>
+          <span class="eyebrow">Incluso em todas as acomodações</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.4rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          O essencial já está
+          <span class="italic text-[#2c6e7f]"> cuidado.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-5">
+        {INCLUDED.map((it) => (
+          <div class="flex flex-col items-center gap-3 rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-5 text-center transition-shadow hover:shadow-(--shadow-elevated)">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+              {it.icon === "Snowflake" && <Snowflake size={20} />}
+              {it.icon === "Wind" && <Wind size={20} />}
+              {it.icon === "Wifi" && <Wifi size={20} />}
+              {it.icon === "Sparkles" && <Sparkles size={20} />}
+              {it.icon === "DoorOpen" && <DoorOpen size={20} />}
+              {it.icon === "PawPrint" && <PawPrint size={20} />}
+            </span>
+            <span class="text-[0.8rem] font-medium leading-snug text-[#2a2418]">{it.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-[#e8b547]/40 bg-[#e8b547]/10 p-7 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-start gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#e07a3c]/15 text-[#9c4d1c]">
+            <Home size={20} />
+          </span>
+          <div>
+            <h3 class="text-lg text-[#14271f]" style="font-family: var(--font-display); font-weight: 400;">
+              Bangalôs para temporada
+            </h3>
+            <p class="mt-1 max-w-xl text-[0.85rem] leading-relaxed text-[#4a4030]">
+              Os bangalôs estão disponíveis também para aluguel mensal — ideal
+              para viver o Sertão do Camburi por temporadas mais longas, com a
+              estrutura completa da pousada à disposição.
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Quero%20saber%20sobre%20aluguel%20de%20temporada%20nos%20bangal%C3%B4s."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 rounded-full bg-[#1f3a2e] px-5 py-2.5 text-[0.8rem] font-semibold text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
+        >
+          Consultar temporada
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    items={[
+      { href: "/pet-friendly", label: "Pet Friendly", hint: "Acomodações preparadas para o seu pet" },
+      { href: "/comodidades", label: "Estrutura & comodidades", hint: "Tudo que a pousada oferece" },
+      { href: "/beach-tennis", label: "Beach Tennis", hint: "Arena 20×11m, grátis para hóspedes" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>

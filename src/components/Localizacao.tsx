@@ -8,6 +8,7 @@ import {
     MessageCircle,
     Navigation,
     Phone,
+    Star,
 } from "lucide-react";
 import { CONTACT } from "./cn";
 
@@ -56,7 +57,7 @@ export default function Localizacao() {
             transition={{ duration: 0.7 }}
             className="flex flex-col gap-4"
           >
-            <div className="rounded-[var(--radius-card)] border border-[#d9cfb8] bg-white/70 p-6 shadow-[var(--shadow-subtle)] sm:p-7">
+            <div className="rounded-[var(--radius-card)] border border-[#d9cfb8] bg-white/70 p-6 shadow-(--shadow-subtle) sm:p-7">
               <div className="flex items-start gap-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
                   <MapPin size={20} strokeWidth={1.7} />
@@ -118,6 +119,16 @@ export default function Localizacao() {
                 Instagram
               </a>
               <a
+                href={CONTACT.tripadvisor}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="cta"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-[#d9cfb8] bg-white/60 px-4 py-2.5 text-[0.8rem] font-semibold text-[#3d5d49] transition-all duration-300 hover:border-[#9c4d1c]/60 hover:text-[#9c4d1c]"
+              >
+                <Star size={15} className="fill-[#e8b547] text-[#e8b547]" />
+                Tripadvisor
+              </a>
+              <a
                 href={CONTACT.website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -138,7 +149,7 @@ export default function Localizacao() {
             className="flex flex-col gap-4"
           >
             {/* Stylized map */}
-            <div className="relative overflow-hidden rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-[#1f3a2e] shadow-[var(--shadow-elevated)]">
+            <div className="relative overflow-hidden rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-[#1f3a2e] shadow-(--shadow-elevated)">
               <div
                 className="relative h-[300px] w-full sm:h-[340px]"
                 style={{
@@ -223,7 +234,7 @@ export default function Localizacao() {
             </div>
 
             {/* Regional atmosphere image with attribution */}
-            <figure className="relative overflow-hidden rounded-[var(--radius-card)] border border-[#d9cfb8] shadow-[var(--shadow-subtle)]">
+            <figure className="relative overflow-hidden rounded-[var(--radius-card)] border border-[#d9cfb8] shadow-(--shadow-subtle)">
               <img
                 src={PEXELS_IMAGE}
                 alt="Atmosfera do estado de São Paulo — fotografia ilustrativa da região."
@@ -271,7 +282,7 @@ function ContactCard({
   cta?: boolean;
 }) {
   const inner = (
-    <div className="flex h-full flex-col gap-2 rounded-[var(--radius-card)] border border-[#d9cfb8] bg-white/70 p-5 transition-all duration-300 hover:border-[#9c4d1c]/40 hover:shadow-[var(--shadow-subtle)]">
+    <div className="flex h-full flex-col gap-2 rounded-[var(--radius-card)] border border-[#d9cfb8] bg-white/70 p-5 transition-all duration-300 hover:border-[#9c4d1c]/40 hover:shadow-(--shadow-subtle)">
       <div className="flex items-center gap-2">
         <Icon size={16} className="text-[#9c4d1c]" strokeWidth={1.9} />
         <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#6b5d45]">

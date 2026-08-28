@@ -1,0 +1,177 @@
+---
+import { Bath, Cookie, Home, PawPrint, Phone, ShieldCheck } from "lucide-react";
+import CTAFinal from "../components/CTAFinal.tsx";
+import ManualPet from "../components/ManualPet.tsx";
+import PetFriendly from "../components/PetFriendly.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const CHECKLIST = [
+  {
+    icon: "ShieldCheck",
+    title: "Saúde em dia",
+    text: "Carteira de vacinação atualizada e vermifugação em dia. Consulte seu veterinário antes da viagem.",
+  },
+  {
+    icon: "PawPrint",
+    title: "Sociabilidade",
+    text: "Recebemos pets sociáveis com outros pets e humanos. Machos precisam ser castrados.",
+  },
+  {
+    icon: "Home",
+    title: "Sozinho no quarto",
+    text: "Se precisar sair sem ele, considere o tempo — deve estar habituado a ficar só para não estressar. Leve brinquedos favoritos.",
+  },
+  {
+    icon: "Cookie",
+    title: "Alimentação",
+    text: "Traga a ração habitual dele. O café da manhã da pousada oferece biscoitinhos e muffins de abóbora 100% naturais.",
+  },
+];
+
+const SPA = [
+  { icon: "Bath", label: "Banheira com torneira de água aquecida" },
+  { icon: "Bath", label: "Mesa de tosa e secador profissional" },
+  { icon: "Bath", label: "Soprador profissional" },
+  { icon: "PawPrint", label: "Parceria com Splash Dog (banho com profissional — à parte)" },
+  { icon: "ShieldCheck", label: "Agendamento na recepção" },
+  { icon: "Waves", label: "Uso individual para evitar estresse entre pets" },
+];
+---
+
+<SectionLayout
+  title="Pet Friendly"
+  eyebrow="Seu pet é nosso hóspede"
+  description="Piscina exclusiva, café da manhã, espaço de banho SPA'PET, Bosque Play Pet e toda a estrutura para o seu pet ser feliz — da hora do café ao mergulho na piscina."
+>
+  {/* Seção principal (dark) — reutiliza o componente da home */}
+  <PetFriendly client:load />
+
+  {/* Manual Elanco — Farejando por Aí */}
+  <ManualPet client:visible />
+
+  {/* Checklist antes de vir */}
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-14">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">ii</span>
+          <span class="eyebrow">Antes de vir · Checklist do tutor</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.6rem] lg:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Prepare seu companheiro
+          <span class="block italic text-[#9c4d1c]">para a melhor viagem.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {CHECKLIST.map((c) => (
+          <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-6 transition-shadow hover:shadow-(--shadow-elevated)">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+              {c.icon === "ShieldCheck" && <ShieldCheck size={20} />}
+              {c.icon === "PawPrint" && <PawPrint size={20} />}
+              {c.icon === "Home" && <Home size={20} />}
+              {c.icon === "Cookie" && <Cookie size={20} />}
+            </div>
+            <h3
+              class="mb-2 text-lg text-[#14271f]"
+              style="font-family: var(--font-display); font-weight: 400;"
+            >
+              {c.title}
+            </h3>
+            <p class="text-[0.85rem] leading-relaxed text-[#4a4030]">{c.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-[#e8b547]/40 bg-[#e8b547]/10 p-7 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#e07a3c]/15 text-[#9c4d1c]">
+            <PawPrint size={20} />
+          </div>
+          <div>
+            <h3
+              class="text-lg text-[#14271f]"
+              style="font-family: var(--font-display); font-weight: 400;"
+            >
+              Quantos pets e quais portes?
+            </h3>
+            <p class="mt-1 max-w-xl text-[0.85rem] leading-relaxed text-[#4a4030]">
+              Recebemos todos os portes, desde que sociáveis. A quantidade por
+              acomodação depende da raça e porte — consulte pelo WhatsApp antes
+              de reservar.
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Quero%20levar%20meu%20pet%20%C3%A0%20Pousada%20Portal%20do%20Cacau."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 rounded-full bg-[#1f3a2e] px-5 py-2.5 text-[0.8rem] font-semibold text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
+        >
+          Consultar pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* SPA'PET */}
+  <section class="bg-[#14271f] px-6 py-20 text-[#f3ecdb] sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
+        <div>
+          <div class="mb-5 flex items-center gap-4">
+            <span class="field-no text-2xl" style="color:#e8b547;">iii</span>
+            <span class="eyebrow text-[#e8b547]/90">Espaço de Banho SPA'PET</span>
+          </div>
+          <h2
+            class="text-[2rem] leading-[1.05] text-[#f3ecdb] sm:text-[2.6rem]"
+            style="font-family: var(--font-display); font-weight: 400;"
+          >
+            Banho e secagem
+            <span class="block italic text-[#e8b547]">profissionais.</span>
+          </h2>
+          <p class="mt-5 max-w-xl text-[0.92rem] leading-relaxed text-[#f3ecdb]/75">
+            Estrutura completa de banho e secagem dentro da pousada, com
+            soprador profissional. Para quem prefere, contamos com parceria da
+            Splash Dog para banho com profissional — serviço cobrado à parte,
+            agendado na recepção.
+          </p>
+          <a
+            href="https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Quero%20agendar%20o%20espa%C3%A7o%20SPA'PET."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-7 inline-flex items-center gap-2 rounded-full bg-[#e07a3c] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#c25f28]"
+          >
+            <Phone size={16} />
+            Agendar na recepção
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {SPA.map((s) => (
+            <div class="flex items-center gap-3 rounded-xl border border-[#f3ecdb]/12 bg-[#1f3a2e]/50 p-4 backdrop-blur-sm">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#e07a3c]/15 text-[#e8b547]">
+                <Bath size={16} />
+              </span>
+              <span class="text-[0.82rem] leading-snug text-[#f3ecdb]/85">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    items={[
+      { href: "/acomodacoes", label: "Acomodações preparadas", hint: "Suítes e bangalôs que recebem pets" },
+      { href: "/comodidades", label: "Estrutura & comodidades", hint: "Piscina, café da manhã e mais" },
+      { href: "/eventos", label: "Aniversário do seu pet", hint: "Comemoração temática com piscina de 10m" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>

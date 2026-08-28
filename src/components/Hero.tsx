@@ -6,6 +6,8 @@ import {
 } from "framer-motion";
 import { ArrowRight, Clock, MapPin, MessageCircle, PawPrint, Star } from "lucide-react";
 import { useRef } from "react";
+import droneVideo from "../../assets/main-video/drone-tour-hero.mp4";
+import dronePoster from "../../assets/main-video/drone-tour-poster.jpg";
 import { CONTACT } from "./cn";
 
 export default function Hero() {
@@ -31,22 +33,47 @@ export default function Hero() {
       ref={ref}
       className="relative flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden bg-[#14271f] pt-6 pb-10 sm:pt-10 sm:pb-14"
     >
-      {/* Atmospheric layers — forest canopy → sea → sunset horizon */}
+      {/* Drone video background + atmospheric overlays */}
       <div className="pointer-events-none absolute inset-0">
+        {/* Video base layer */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={typeof dronePoster === "string" ? dronePoster : (dronePoster as { src: string }).src}
+          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden="true"
+        >
+          <source src={droneVideo} type="video/mp4" />
+        </video>
+
+        {/* Dark overlay for legibility — gradient from deep forest at top to lighter at bottom */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(120% 80% at 15% 0%, #1f3a2e 0%, #14271f 55%, #0c1812 100%)",
+              "linear-gradient(180deg, rgba(20,39,31,0.82) 0%, rgba(20,39,31,0.55) 45%, rgba(12,24,18,0.75) 100%)",
           }}
         />
+        {/* Side vignette to keep left text readable */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 100% at 30% 50%, transparent 0%, rgba(12,24,18,0.5) 100%)",
+          }}
+        />
+
+        {/* Atmospheric color washes (kept subtle over video) */}
         <motion.div
           style={{ y: canopyY }}
           className="absolute inset-x-0 top-0 h-[55%]"
           aria-hidden="true"
         >
           <div
-            className="absolute inset-0 opacity-60"
+            className="absolute inset-0 opacity-30"
             style={{
               background:
                 "radial-gradient(60% 100% at 80% 0%, rgba(90,125,82,0.35) 0%, transparent 60%)",
@@ -59,7 +86,7 @@ export default function Hero() {
           aria-hidden="true"
         >
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 opacity-40"
             style={{
               background:
                 "linear-gradient(180deg, transparent 0%, rgba(44,110,127,0.28) 45%, rgba(224,122,60,0.22) 100%)",
@@ -68,7 +95,7 @@ export default function Hero() {
         </motion.div>
         {/* Sun disc */}
         <div
-          className="absolute right-[12%] bottom-[18%] h-40 w-40 rounded-full opacity-50 blur-2xl"
+          className="absolute right-[12%] bottom-[18%] h-40 w-40 rounded-full opacity-30 blur-2xl"
           style={{ background: "radial-gradient(circle, #e8b547 0%, transparent 70%)" }}
           aria-hidden="true"
         />
@@ -76,7 +103,7 @@ export default function Hero() {
 
       {/* Botanical line decorations */}
       <svg
-        className="pointer-events-none absolute left-0 top-1/2 hidden h-[420px] w-[180px] -translate-y-1/2 text-[#5a7d52]/25 lg:block"
+        className="pointer-events-none absolute left-0 top-1/2 hidden h-105 w-45 -translate-y-1/2 text-[#5a7d52]/25 lg:block"
         viewBox="0 0 180 420"
         fill="none"
         aria-hidden="true"
@@ -174,7 +201,7 @@ export default function Hero() {
               Reservar pelo WhatsApp
             </a>
             <a
-              href="#manifesto"
+              href={`${import.meta.env.BASE_URL}#manifesto`}
               className="group inline-flex items-center gap-2 rounded-full border-2 border-[#f3ecdb]/45 bg-white/10 px-6 py-3.5 text-sm font-semibold text-[#f3ecdb] backdrop-blur-sm transition-all duration-300 hover:border-[#e8b547]/70 hover:bg-white/15"
             >
               Conhecer a pousada

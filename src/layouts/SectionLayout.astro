@@ -1,0 +1,76 @@
+---
+import Cursor from "../components/Cursor.tsx";
+import Footer from "../components/Footer.tsx";
+import Navbar from "../components/Navbar.tsx";
+import ScrollProgress from "../components/ScrollProgress.tsx";
+import SmoothScroll from "../components/SmoothScroll.tsx";
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Eyebrow label shown above the title */
+  eyebrow?: string;
+  /** Optional hero background image URL */
+  heroImage?: string;
+}
+
+const { title, description = "", eyebrow, heroImage } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <SmoothScroll client:load />
+  <Cursor client:load />
+  <ScrollProgress client:load />
+
+  <Navbar client:load />
+
+  <main class="min-h-screen bg-[#f3ecdb]">
+    <!-- Compact page hero -->
+    <section
+      class="relative flex min-h-[42vh] items-end overflow-hidden bg-[#14271f] px-6 pb-12 pt-32 sm:px-10 sm:pb-16 sm:pt-40"
+    >
+      {heroImage && (
+        <img
+          src={heroImage}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover opacity-35"
+          loading="eager"
+        />
+      )}
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-[#14271f] via-[#14271f]/60 to-transparent"
+      >
+      </div>
+
+      <div class="relative z-10 mx-auto w-full max-w-7xl">
+        {eyebrow && (
+          <p
+            class="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-[#e8b547]"
+            style="font-family: var(--font-detail);"
+          >
+            {eyebrow}
+          </p>
+        )}
+        <h1
+          class="text-[clamp(2.4rem,6vw,4.5rem)] font-normal leading-[0.95] text-[#f3ecdb]"
+          style="font-family: var(--font-display); letter-spacing: -0.04em;"
+        >
+          {title}
+        </h1>
+        {description && (
+          <p class="mt-5 max-w-2xl text-[0.95rem] leading-relaxed text-[#f3ecdb]/70">
+            {description}
+          </p>
+        )}
+      </div>
+    </section>
+
+    <!-- Page content -->
+    <div class="bg-[#f3ecdb]">
+      <slot />
+    </div>
+  </main>
+
+  <Footer client:load />
+</Layout>

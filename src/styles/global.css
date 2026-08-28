@@ -1256,6 +1256,11 @@
       opacity: 1;
       transform: none;
     }
+
+    /* Pause hero background video — show poster only */
+    #topo video {
+      display: none;
+    }
   }
 
   @media (forced-colors: active) {

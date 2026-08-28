@@ -4,13 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "bash scripts/setup-admin.sh",
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "admin": "lsof -ti:8081 | xargs kill -9 2>/dev/null; concurrently -k \"astro dev\" \"decap-server\"",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/react": "6.0.2",
     "@rive-app/react-canvas": "^4.32.0",
+    "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "^4.3.3",
     "@types/three": "^0.181.0",
     "astro": "7.2.0",
@@ -28,6 +32,8 @@
   "devDependencies": {
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "concurrently": "^10.0.5",
+    "decap-server": "^3.10.0",
     "typescript": "5.9.3",
     "vitest": "4.1.10"
   }

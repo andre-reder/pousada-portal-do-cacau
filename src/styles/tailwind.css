@@ -1,5 +1,6 @@
 @layer reset, theme, base, components, utilities, tokens, responsive, motion;
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 @import './global.css';
 
 /* The generated/ and generated-preview/ directories are gitignored, so Tailwind

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Admin · Pousada Portal do Cacau</title>
+    <link rel="icon" href="data:," />
+    <base href="/pousada-portal-do-cacau-9eb6c0/admin/" />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #f3ecdb;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nc-root"></div>
+
+    <!-- Decap CMS standalone build (includes React) -->
+    <script src="decap-cms/decap-cms.js"></script>
+
+    <script>
+      // Register preview styles once CMS is loaded
+      if (typeof window.CMS !== 'undefined') {
+        CMS.registerPreviewStyle([
+          'body { background: #f3ecdb; font-family: system-ui, sans-serif; color: #4a4030; }',
+          'h1 { font-family: Georgia, serif; font-weight: 400; color: #14271f; font-size: 1.8rem; }',
+          'h2 { font-family: Georgia, serif; font-weight: 400; color: #14271f; font-size: 1.3rem; border-bottom: 1px solid #e6dec9; padding-bottom: 0.3em; }',
+          'h3 { font-family: Georgia, serif; font-weight: 400; color: #3d5d49; font-size: 1.1rem; }',
+          'p { line-height: 1.75; font-size: 0.95rem; }',
+          'a { color: #9c4d1c; }',
+          'strong { color: #14271f; }',
+          'blockquote { border-left: 3px solid #e8b547; padding: 0.6em 1.2em; font-style: italic; }',
+          'img { border-radius: 14px; max-width: 100%; }',
+          'ul li::marker { color: #e07a3c; }',
+        ]);
+      }
+    </script>
+  </body>
+</html>

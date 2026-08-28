@@ -20,4 +20,34 @@ export const CONTACT = {
   instagram: "https://www.instagram.com/pousadaportaldocacau",
   facebook: "https://www.facebook.com/pousada.portaldocacau",
   website: "https://portaldocacau.com.br/",
+  tripadvisor:
+    "https://www.tripadvisor.com.br/Hotel_Review-g5617507-d3264911-Reviews-Pousada_Portal_do_Cacau-Camburi_Sao_Sebastiao_State_of_Sao_Paulo.html",
+};
+
+/** ireservas booking engine configuration. */
+export const BOOKING = {
+  /** Booking engine base URL. */
+  baseUrl: "https://ireservas.com.br/booking-tool/booking-engine.php",
+  /** Property key (k param). */
+  key: "4DE7DAE5-8B6",
+  /**
+   * Build the full booking URL from the given parameters.
+   * Dates must be in YYYY-MM-DD format.
+   */
+  buildUrl(params: {
+    checkIn: string;
+    checkOut: string;
+    adults?: number;
+    children?: number;
+    pets?: number;
+  }): string {
+    const url = new URL(this.baseUrl);
+    url.searchParams.set("k", this.key);
+    url.searchParams.set("adt", String(params.adults ?? 2));
+    url.searchParams.set("chd", String(params.children ?? ""));
+    url.searchParams.set("pts", String(params.pets ?? 0));
+    url.searchParams.set("in", params.checkIn);
+    url.searchParams.set("out", params.checkOut);
+    return url.toString();
+  },
 };

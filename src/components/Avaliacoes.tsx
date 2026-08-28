@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { PawPrint, Quote, Star } from "lucide-react";
+import { PawPrint, Play, Quote, Star } from "lucide-react";
+import { useState } from "react";
+import { CONTACT } from "./cn";
 
 type Review = {
   name: string;
@@ -41,6 +43,69 @@ const REVIEWS: Review[] = [
   },
 ];
 
+type VideoItem = {
+  id: string;
+  title: string;
+};
+
+const VIDEOS: VideoItem[] = [
+  { id: "StoWzx8zvEU", title: "Depoimento em vídeo" },
+  { id: "gY3U-hLR8os", title: "Depoimento em vídeo" },
+  { id: "FbXvQkrhzLI", title: "Tour pela pousada" },
+];
+
+function VideoCard({ id, title }: VideoItem) {
+  const [clicked, setClicked] = useState(false);
+  const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-8% 0px" }}
+      transition={{ duration: 0.6 }}
+      whileHover={{ y: -5 }}
+      className="group relative overflow-hidden rounded-[var(--radius-card)] border border-[#f3ecdb]/12 bg-[#1f3a2e]/60 backdrop-blur-sm transition-colors duration-300 hover:border-[#e8b547]/40"
+    >
+      <div className="relative aspect-video w-full">
+        {clicked ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${id}?autoplay=1`}
+            title={title}
+            className="absolute inset-0 h-full w-full"
+            frameBorder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setClicked(true)}
+            className="absolute inset-0 h-full w-full cursor-pointer"
+            aria-label={`Reproduzir vídeo: ${title}`}
+          >
+            <img
+              src={thumb}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <span className="absolute inset-0 bg-black/30 transition-opacity duration-300 group-hover:bg-black/20" />
+            <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#e07a3c]/90 shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <Play size={26} className="ml-1 fill-white text-white" />
+            </span>
+          </button>
+        )}
+      </div>
+      <div className="px-5 py-4">
+        <div className="text-[0.8rem] uppercase tracking-[0.16em] text-[#e8b547]/80">
+          {title}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Avaliacoes() {
   return (
     <section
@@ -81,16 +146,26 @@ export default function Avaliacoes() {
                 voltou para casa feliz.
               </span>
             </motion.h2>
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-12% 0px" }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-[0.9rem] leading-relaxed text-[#f3ecdb]/65 lg:pb-3"
+              className="lg:pb-3"
             >
-              Relatos de hóspedes que compartilharam suas estadias conosco.
-              Exemplos representativos da experiência no Portal do Cacau.
-            </motion.p>
+              <p className="text-[0.9rem] leading-relaxed text-[#f3ecdb]/65">
+                Relatos de hóspedes que compartilharam suas estadias conosco.
+                Exemplos representativos da experiência no Portal do Cacau.
+              </p>
+              <a
+                href={CONTACT.tripadvisor}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-[0.85rem] font-medium text-[#e8b547] underline-offset-4 transition-colors duration-200 hover:text-[#e07a3c] hover:underline"
+              >
+                Veja mais avaliações no Tripadvisor
+              </a>
+            </motion.div>
           </div>
         </div>
 
@@ -142,6 +217,37 @@ export default function Avaliacoes() {
               </figcaption>
             </motion.figure>
           ))}
+        </div>
+
+        {/* Vídeos subsection */}
+        <div className="mt-20 sm:mt-28">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-12% 0px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 flex items-center gap-4 sm:mb-10"
+          >
+            <span className="eyebrow text-[#e8b547]/90">Vídeos · Quem esteve aqui em vídeo</span>
+          </motion.div>
+
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-12% 0px" }}
+            transition={{ duration: 0.7 }}
+            className="mb-10 font-display text-[1.8rem] leading-[1.1] text-[#f3ecdb] sm:text-[2.2rem] lg:text-[2.6rem]"
+            style={{ fontFamily: "var(--font-display)", fontWeight: 400, color: "#f3ecdb" }}
+          >
+            Veja em vídeo
+            <span className="block italic text-[#e8b547]">a experiência por quem viveu.</span>
+          </motion.h3>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            {VIDEOS.map((v) => (
+              <VideoCard key={v.id} id={v.id} title={v.title} />
+            ))}
+          </div>
         </div>
 
         <motion.div

@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import Lenis from "lenis";
+import { useEffect } from "react";
 
 /**
  * Global smooth-scroll controller (Lenis).
@@ -36,11 +36,28 @@ export default function SmoothScroll() {
 
     const onAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement)?.closest(
-        'a[href^="#"]'
+        'a[href*="#"]'
       ) as HTMLAnchorElement | null;
       if (!target) return;
-      const id = target.getAttribute("href");
-      if (!id || id === "#") return;
+      const rawHref = target.getAttribute("href");
+      if (!rawHref || rawHref === "#") return;
+      // Extract the hash portion — works for both "#section" and "/base#section"
+      const hashIndex = rawHref.indexOf("#");
+      if (hashIndex === -1) return;
+      const id = rawHref.slice(hashIndex);
+      // Only intercept if we're on the page the link points to
+      const pathBeforeHash = rawHref.slice(0, hashIndex);
+      if (pathBeforeHash) {
+        const targetPath = pathBeforeHash.replace(
+          import.meta.env.BASE_URL,
+          ""
+        );
+        const currentPath = window.location.pathname.replace(
+          import.meta.env.BASE_URL,
+          ""
+        );
+        if (targetPath !== currentPath) return; // different page — let browser navigate
+      }
       const el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();

@@ -1,0 +1,90 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+import CTAFinal from "../components/CTAFinal.tsx";
+import { ExternalLink } from "lucide-react";
+
+const PARTNERS = [
+  {
+    name: "JC Bikes",
+    text: "Aluguel de bicicletas e passeios ciclísticos pelas trilhas e estradas do Sertão do Camburi e região.",
+  },
+  {
+    name: "Vivência Constelação",
+    text: "Experiências de bem-estar e conexão com a natureza, com vivências em grupo no coração da Mata Atlântica.",
+  },
+  {
+    name: "Arraial Gastronômico",
+    text: "Festival gastronômico que celebra a culinária do litoral norte paulista, com pratos de chefes locais.",
+  },
+  {
+    name: "Super Anny",
+    text: "Mercado e conveniência no Sertão do Camburi, com tudo o que você precisa para a sua estadia.",
+  },
+  {
+    name: "Yoga no Camburi",
+    text: "Aulas e retiros de yoga em meio à natureza, para quem busca equilíbrio entre corpo e mente.",
+  },
+  {
+    name: "Simões Trip Boat",
+    text: "Passeios de barco pelas ilhas da região, com snorkel e contemplação da vida marinha.",
+  },
+  {
+    name: "Malhasete",
+    text: "Roupas e acessórios com identidade praiana, produzidos no litoral norte paulista.",
+  },
+  {
+    name: "Eco Experience",
+    text: "Nossa principal parceira em ecoturismo — guias biólogos capacitados em primeiros socorros, com foco em educação ambiental e conservação.",
+  },
+];
+---
+
+<SectionLayout
+  title="Parceiros"
+  eyebrow="Quem caminha conosco"
+  description="Trabalhamos com os melhores parceiros da região para oferecer experiências completas — do ecoturismo à gastronomia, do bem-estar à conveniência."
+>
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {PARTNERS.map((p) => (
+          <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-7 transition-shadow hover:shadow-lg">
+            <h3
+              class="mb-2 flex items-center gap-2 text-xl text-[#14271f]"
+              style="font-family: var(--font-display);"
+            >
+              {p.name}
+            </h3>
+            <p class="text-[0.9rem] leading-relaxed text-[#4a4030]">
+              {p.text}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-2xl border border-[#2c6e7f]/30 bg-[#2c6e7f]/10 p-8 text-center">
+        <h3
+          class="mb-3 text-2xl text-[#14271f]"
+          style="font-family: var(--font-display);"
+        >
+          Quer ser nosso parceiro?
+        </h3>
+        <p class="mx-auto mb-5 max-w-xl text-[0.9rem] leading-relaxed text-[#4a4030]">
+          Buscamos parceiros que compartilhem nossos valores de hospitalidade,
+          sustentabilidade e amor pelos pets. Entre em contato pelo WhatsApp.
+        </p>
+        <a
+          href="https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20parceria."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-[#1f3a2e] px-6 py-3 text-[0.85rem] font-semibold text-[#f3ecdb] transition-colors hover:bg-[#e07a3c]"
+        >
+          Falar com a gente
+          <ExternalLink size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal client:load />
+</SectionLayout>

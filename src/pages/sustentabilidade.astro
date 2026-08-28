@@ -1,0 +1,74 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+import CTAFinal from "../components/CTAFinal.tsx";
+import { Leaf, Recycle, Droplets, TreePalm, Sun, Heart } from "lucide-react";
+
+const PILLARS = [
+  {
+    icon: "TreePalm",
+    title: "Mata Atlântica preservada",
+    text: "Estamos inseridos em uma área de Mata Atlântica preservada, com uma nascente de água limpa que passa pela propriedade. Nossa construção respeita a vegetação nativa e os corredores ecológicos da fauna local.",
+  },
+  {
+    icon: "Recycle",
+    title: "Gestão de resíduos",
+    text: "Separção e destinação correta de resíduos, compostagem de orgânicos da cozinha e redução de plásticos descartáveis. Trabalhamos com fornecedores locais para reduzir a pegada de carbono.",
+  },
+  {
+    icon: "Droplets",
+    title: "Água e energia",
+    text: "Aquecimento central a gás nos chuveiros, sistema de captação e reuso de água da chuva para irrigação, e iluminação LED em toda a pousada. A nascente que corta o terreno abastece parte das necessidades hídricas.",
+  },
+  {
+    icon: "Sun",
+    title: "Educação ambiental",
+    text: "Em parceria com a Eco Experience, nossos passeios de ecoturismo são guiados por biólogos e focados em educação ambiental e conservação. Acreditamos que conhecer é o primeiro passo para proteger.",
+  },
+  {
+    icon: "Heart",
+    title: "Hospitalidade consciente",
+    text: "Nossa equipe é da comunidade local, valorizando o conhecimento tradicional e gerando renda para o Sertão do Camburi. O café da manhã usa ingredientes de produtores da região.",
+  },
+  {
+    icon: "Leaf",
+    title: "Pets e natureza",
+    text: "Recebemos pets como parte da família, com regras de convivência que respeitam a fauna silvestre local. O Bosque Play Pet é cercado para evitar que os pets se aventuren na mata sem supervisão.",
+  },
+];
+---
+
+<SectionLayout
+  title="Sustentabilidade"
+  eyebrow="Nosso compromisso"
+  description="Acreditamos que hospitalidade e conservação caminham juntas. Conheça os pilares que guiam nossa relação com a natureza e a comunidade do Sertão do Camburi."
+>
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {PILLARS.map((p) => (
+          <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-7 transition-shadow hover:shadow-lg">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#1f3a2e] text-[#e8b547]">
+              {p.icon === "TreePalm" && <TreePalm size={22} />}
+              {p.icon === "Recycle" && <Recycle size={22} />}
+              {p.icon === "Droplets" && <Droplets size={22} />}
+              {p.icon === "Sun" && <Sun size={22} />}
+              {p.icon === "Heart" && <Heart size={22} />}
+              {p.icon === "Leaf" && <Leaf size={22} />}
+            </div>
+            <h3
+              class="mb-2 text-xl text-[#14271f]"
+              style="font-family: var(--font-display);"
+            >
+              {p.title}
+            </h3>
+            <p class="text-[0.9rem] leading-relaxed text-[#4a4030]">
+              {p.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal client:load />
+</SectionLayout>

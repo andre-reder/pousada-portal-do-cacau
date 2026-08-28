@@ -1,0 +1,142 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+import { CONTACT } from "../components/cn";
+---
+
+<SectionLayout
+  title="Política de Privacidade"
+  eyebrow="LGPD"
+  description="Como tratamos seus dados pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD)."
+>
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-3xl">
+      <div class="prose prose-stone max-w-none">
+        <p class="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#9c4d1c]">
+          Última atualização: 11/09/2021
+        </p>
+
+        <div class="space-y-6 text-[0.92rem] leading-relaxed text-[#4a4030]">
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              1. Introdução
+            </h2>
+            <p>
+              A Pousada Portal do Cacau ("nós", "nosso" ou "a pousada") respeita
+              a sua privacidade e está comprometida em proteger os seus dados
+              pessoais em conformidade com a Lei Geral de Proteção de Dados
+              (Lei nº 13.709/2018 — LGPD).
+            </p>
+            <p class="mt-3">
+              Esta política descreve como coletamos, usamos, armazenamos e
+              protegemos as informações que você nos fornece ao interagir com
+              nosso site, formulários e canais de atendimento.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              2. Dados que coletamos
+            </h2>
+            <p>
+              Coletamos dados pessoais fornecidos voluntariamente por você ao
+              preencher formulários de reserva, entrar em contato pelo WhatsApp
+              ou telefone, ou interagir com nossas redes sociais. Isso inclui:
+            </p>
+            <ul class="mt-3 list-disc space-y-1 pl-6">
+              <li>Nome completo</li>
+              <li>Telefone e/ou e-mail</li>
+              <li>Datas de check-in e check-out pretendidas</li>
+              <li>Número de adultos e pets</li>
+              <li>Mensagens enviadas via formulários ou WhatsApp</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              3. Finalidade do tratamento
+            </h2>
+            <p>
+              Seus dados são tratados com a finalidade de gestão de
+              relacionamento com o cliente — responder a solicitações de
+              reserva, enviar confirmações, prestar suporte durante a estadia e
+              melhorar nossos serviços. O tratamento é baseado no legítimo
+              interesse e no consentimento expresso no momento da interação.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              4. Compartilhamento de dados
+            </h2>
+            <p>
+              Não vendemos nem alugamos seus dados. Podemos compartilhar
+              informações com parceiros estritamente necessários para a
+              prestação do serviço (ex.: plataforma de reservas iReservas),
+              sempre sob acordo de confidencialidade e em conformidade com a
+              LGPD.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              5. Segurança dos dados
+            </h2>
+            <p>
+              Adotamos medidas técnicas e organizacionais para proteger seus
+              dados contra acessos não autorizados, alteração ou divulgação
+              indevida. No entanto, nenhum sistema é 100% seguro — em caso de
+              incidente de segurança que possa afetar seus direitos, notificaremos
+              os afetados e a ANPD (Autoridade Nacional de Proteção de Dados)
+              dentro do prazo legal.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              6. Seus direitos
+            </h2>
+            <p>Você tem o direito de:</p>
+            <ul class="mt-3 list-disc space-y-1 pl-6">
+              <li>Confirmar a existência de tratamento dos seus dados</li>
+              <li>Acessar, corrigir ou atualizar seus dados</li>
+              <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários</li>
+              <li>Solicitar a portabilidade dos dados a outro fornecedor</li>
+              <li>Revogar o consentimento a qualquer momento</li>
+              <li>Apresentar reclamação à ANPD ou à autoridade supervisora competente</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              7. Atualizações desta política
+            </h2>
+            <p>
+              Esta política pode ser modificada sempre que houver alteração na
+              funcionalidade do site ou nos processos de tratamento de dados.
+              A data de atualização no topo desta página indica a última
+              revisão.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="mb-2 text-xl text-[#14271f]" style="font-family: var(--font-display);">
+              8. Contato
+            </h2>
+            <p>
+              Para exercer seus direitos ou tirar dúvidas sobre esta política,
+              entre em contato pelos canais disponíveis no rodapé deste site ou
+              pelo e-mail{" "}
+              <a
+                href={`mailto:${CONTACT.email}`}
+                class="font-semibold text-[#9c4d1c] underline-offset-2 hover:underline"
+              >
+                {CONTACT.email}
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</SectionLayout>

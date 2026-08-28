@@ -1,28 +1,42 @@
-import { Camera, Clock, Globe, Leaf, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Camera, Clock, Globe, Mail, MapPin, MessageCircle } from "lucide-react";
+import logoUrl from "../../assets/logo/image.png";
 import { CONTACT } from "./cn";
 
-const NAV = [
-  { href: "#manifesto", label: "A Pousada" },
-  { href: "#acomodacoes", label: "Acomodações" },
-  { href: "#comodidades", label: "Comodidades" },
-  { href: "#pets", label: "Pet Friendly" },
-  { href: "#ecoturismo", label: "Ecoturismo" },
-  { href: "#eventos", label: "Eventos" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contato", label: "Contato" },
+const BASE = import.meta.env.BASE_URL;
+
+const NAV_EXPLORE = [
+  { href: `${BASE}#acomodacoes`, label: "Acomodações" },
+  { href: `${BASE}#comodidades`, label: "Comodidades" },
+  { href: `${BASE}#pets`, label: "Pet Friendly" },
+  { href: `${BASE}#ecoturismo`, label: "Ecoturismo" },
+  { href: `${BASE}#eventos`, label: "Eventos" },
+  { href: `${BASE}/beach-tennis`, label: "Beach Tennis" },
+];
+
+const NAV_INFO = [
+  { href: `${BASE}/sustentabilidade`, label: "Sustentabilidade" },
+  { href: `${BASE}/parceiros`, label: "Parceiros" },
+  { href: `${BASE}/blog`, label: "Blog" },
+  { href: `${BASE}/faq`, label: "FAQ" },
+  { href: `${BASE}/privacidade`, label: "Privacidade" },
+  { href: `${BASE}#contato`, label: "Contato" },
 ];
 
 export default function Footer() {
   return (
     <footer className="relative bg-[#0c1812] pt-16 pb-10 text-[#f3ecdb] sm:pt-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:gap-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e8b547]/40 bg-[#1f3a2e] text-[#e8b547]">
-                <Leaf size={17} strokeWidth={1.8} />
-              </span>
+              <img
+                src={logoUrl.src}
+                alt="Portal do Cacau"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full object-cover"
+              />
               <span className="flex flex-col leading-none">
                 <span
                   className="font-display text-lg text-[#f3ecdb]"
@@ -68,16 +82,44 @@ export default function Footer() {
               >
                 <MessageCircle size={17} />
               </a>
+              <a
+                href={CONTACT.tripadvisor}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Tripadvisor"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#f3ecdb]/30 text-[#f3ecdb]/70 transition-all duration-300 hover:border-[#e8b547]/60 hover:text-[#e8b547]"
+              >
+                <span className="text-[0.7rem] font-bold">TA</span>
+              </a>
             </div>
           </div>
 
-          {/* Nav */}
+          {/* Explore */}
           <div>
-            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#e8b547]/80" style={{ color: "#e8b547" }}>
-              Navegação
+            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#e8b547]">
+              Explore
             </h3>
-            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
-              {NAV.map((l) => (
+            <ul className="mt-4 flex flex-col gap-2.5">
+              {NAV_EXPLORE.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-[0.85rem] text-[#f3ecdb]/65 transition-colors duration-300 hover:text-[#e8b547]"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Info */}
+          <div>
+            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#e8b547]">
+              Informações
+            </h3>
+            <ul className="mt-4 flex flex-col gap-2.5">
+              {NAV_INFO.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
@@ -127,7 +169,6 @@ export default function Footer() {
               © {new Date().getFullYear()} Pousada Portal do Cacau — Pousada
               pet-friendly em Camburi, São Sebastião.
             </p>
-            <p>Proposta conceitual não oficial.</p>
           </div>
         </div>
       </div>

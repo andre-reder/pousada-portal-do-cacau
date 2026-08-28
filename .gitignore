@@ -21,3 +21,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Decap CMS standalone bundle (downloaded by scripts/setup-admin.sh)
+public/admin/decap-cms/

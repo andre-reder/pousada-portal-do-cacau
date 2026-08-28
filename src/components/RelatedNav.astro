@@ -1,0 +1,54 @@
+---
+/**
+ * "Continue explorando" — strip de páginas relacionadas usado no rodapé
+ * das páginas dedicadas. Puro Astro, sem hidratação.
+ */
+interface Props {
+  items: { href: string; label: string; hint?: string }[];
+  title?: string;
+}
+const { items, title = "Continue explorando" } = Astro.props;
+const BASE = import.meta.env.BASE_URL;
+---
+
+<section class="bg-[#f3ecdb] px-6 py-16 sm:px-10 sm:py-20">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-8 flex items-center gap-4">
+      <span class="eyebrow">{title}</span>
+      <span class="h-px flex-1 bg-[#d9cfb8]"></span>
+    </div>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((it) => (
+          <a
+            href={it.href.startsWith("http") || it.href.startsWith("#") ? it.href : `${BASE}${it.href.replace(/^\//, "")}`}
+            class="group flex items-center justify-between gap-4 rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#1f3a2e]/40 hover:shadow-(--shadow-elevated)"
+          >
+            <span class="flex flex-col">
+              <span
+                class="font-display text-lg text-[#14271f] transition-colors group-hover:text-[#9c4d1c]"
+                style="font-family: var(--font-display); font-weight: 400;"
+              >
+                {it.label}
+              </span>
+              {it.hint && (
+                <span class="mt-0.5 text-[0.78rem] leading-relaxed text-[#6b5d45]">
+                  {it.hint}
+                </span>
+              )}
+            </span>
+            <span
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d9cfb8] text-[#3d5d49] transition-all duration-300 group-hover:border-[#e07a3c] group-hover:bg-[#e07a3c] group-hover:text-white"
+              aria-hidden="true"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

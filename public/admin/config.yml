@@ -1,0 +1,95 @@
+# Decap CMS configuration
+#
+# ─── Local development ───
+# Run `yarn admin` (starts astro dev + decap-server on port 8081)
+# Then open http://localhost:4321/pousada-portal-do-cacau-9eb6c0/admin
+# No auth needed — local_backend bypasses GitHub.
+local_backend: true
+
+# ─── Production backend ───
+# Uses git-gateway which works with Netlify Identity.
+# If deploying on GitHub Pages, see docs/DECAP_OAUTH.md for setup.
+backend:
+  name: git-gateway
+  branch: main
+
+# ─── Media ───
+# Images uploaded through the CMS go to the assets folder
+media_folder: "assets/blog"
+public_folder: "/assets/blog"
+
+# ─── Collections ───
+collections:
+  - name: "blog"
+    label: "Posts do blog"
+    label_singular: "Post"
+    folder: "src/content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+
+    summary: "{{title}} — {{date}}"
+    summary_fields:
+      - title
+      - date
+      - category
+
+    fields:
+      - name: "title"
+        label: "Título"
+        widget: "string"
+        hint: "O título que aparece no topo do post e na lista do blog."
+
+      - name: "date"
+        label: "Data de publicação"
+        widget: "datetime"
+        hint: "Usada para ordenar os posts. Mais recente primeiro."
+
+      - name: "category"
+        label: "Categoria"
+        widget: "select"
+        options:
+          - "Destinos"
+          - "Dicas de Viagem"
+          - "Eventos"
+          - "Feriados"
+          - "Gastronomia Pet"
+          - "Guia Completo"
+          - "Hospedagem Pet Friendly"
+          - "Natureza e Bem-estar"
+          - "Viagem com Pets"
+        hint: "Escolha uma categoria. Ela aparece como etiqueta no card e gera uma página própria."
+
+      - name: "excerpt"
+        label: "Resumo"
+        widget: "text"
+        hint: "Um ou dois parágrafos curtos que aparecem na lista e no topo do post."
+        required: true
+
+      - name: "cover"
+        label: "Imagem de capa"
+        widget: "image"
+        required: false
+        hint: "Aparece no card da lista e como fundo do topo do post. Recomendado: 1200×675px."
+
+      - name: "author"
+        label: "Autor"
+        widget: "string"
+        default: "Pousada Portal do Cacau"
+        required: false
+
+      - name: "tags"
+        label: "Tags"
+        widget: "list"
+        required: false
+        hint: "Palavras-chave separadas por vírgula. Ex: pet friendly, Camburi, trilhas"
+
+      - name: "body"
+        label: "Conteúdo do post"
+        widget: "markdown"
+        hint: "Escreva o post em markdown. Não inclua o título aqui (ele vem do campo Título). Use ## para subtítulos — cada subtítulo aparece automaticamente no sumário lateral do site. Para inserir imagens no texto, use o botão de imagem na barra de ferramentas ou a sintaxe ![descrição](url)."
+        modes:
+          - rich_text
+          - raw

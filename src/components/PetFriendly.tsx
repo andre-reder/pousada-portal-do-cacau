@@ -5,13 +5,19 @@ import {
     useTransform,
 } from "framer-motion";
 import {
+    Bath,
     Cake,
+    CircleDollarSign,
     Cookie,
     Heart,
+    Home,
+    Info,
     MessageCircle,
     PawPrint,
+    Scale,
+    ShieldAlert,
     ShieldCheck,
-    Waves,
+    Waves
 } from "lucide-react";
 import { useRef } from "react";
 import { CONTACT } from "./cn";
@@ -36,6 +42,57 @@ const PET_FEATURES = [
     icon: ShieldCheck,
     title: "Acomodações preparadas",
     text: "Tratamos cada acomodação que recebeu pets com produtos específicos para minimizar alergias. As acomodações são amplas e a área total é enorme para o seu amigo circular livre.",
+  },
+];
+
+const PET_POLICIES: {
+  icon: typeof Waves;
+  title: string;
+  text: string;
+  items?: string[];
+}[] = [
+  {
+    icon: CircleDollarSign,
+    title: "Taxa",
+    text: "Cobramos uma taxa diária no valor de R$ 120,00 por pet.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Machos não castrados",
+    text: "Não recebemos machos não castrados. A falta de castração pode levar a um aumento da agressividade, especialmente em relação a outros machos.",
+  },
+  {
+    icon: PawPrint,
+    title: "Quais e quantos animais recebemos",
+    text: "Recebemos pets de todos os portes, desde que sejam sociáveis com outros pets e humanos. Durante o período de cio as fêmeas sofrem uma queda em sua imunidade e soltam feromônios que alteram o comportamento dos demais pets — o melhor é deixar ela em casa ou se programar para outro período. A quantidade por acomodação depende da raça e porte; consultar via WhatsApp.",
+  },
+  {
+    icon: Home,
+    title: "Local apropriado",
+    text: "Os pets ficam na mesma acomodação que o tutor, não temos canil. Ao sair da pousada sem levar o pet, ele deve permanecer na acomodação. Pedimos para considerar o tempo que deixará seu pet sozinho — ele deve estar acostumado a isso para não sofrer estresse. Traga brinquedos que ele gosta. Todo dano causado a objetos, móveis e estrutura será ressarcido pelo responsável.",
+  },
+  {
+    icon: Scale,
+    title: "Lei municipal 848/92",
+    text: "Proíbe o acesso, permanência e banho de animais domésticos na praia. Tutores cientes em caso de multa (podendo chegar a R$ 600,00).",
+  },
+  {
+    icon: Bath,
+    title: "Espaço de Banho SPA'PET",
+    text: "Temos espaço de banho e secagem apropriado para os pets, com soprador profissional. Parceria com a SPLASH DOG para banho com profissional (serviço cobrado à parte). Estrutura com banheira, torneira com água aquecida, mesa, secador e soprador profissional. Agendar na recepção. Não é permitido o uso do espaço para dois pets desconhecidos simultaneamente, para evitar estresse.",
+  },
+  {
+    icon: Info,
+    title: "Regras de convivência, alimentação e higiene",
+    text: "",
+    items: [
+      "Fora da acomodação o pet é bem-vindo em toda área comum, exceto a parte interna do restaurante (mas bem-vindo na parte externa).",
+      "O pet pode ficar solto pela pousada, desde que o tutor esteja ao seu lado (área de mata, risco de animais peçonhentos).",
+      "O tutor é responsável pelo acompanhamento, alimentação e recolhimento dos dejetos.",
+      "A limpeza na acomodação com pet é obrigatoriamente diária — agende um horário entre 11h e 14h na recepção, e se ausente do quarto com o pet.",
+      "Não fazemos limpeza com o pet dentro (risco de fuga e acidente com camareiras).",
+      "O tutor é responsável por qualquer comportamento não social ou agressivo. Em caso de ocorrências, solicitaremos retirada das áreas de convivência; em caso de recorrência, pediremos que o hóspede se retire sem restituição.",
+    ],
   },
 ];
 
@@ -142,13 +199,90 @@ export default function PetFriendly() {
           ))}
         </div>
 
+        {/* Política Pet */}
+        <div className="mt-16 sm:mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-12% 0px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 flex items-center gap-4 sm:mb-10"
+          >
+            <span className="eyebrow text-[#e8b547]/90">Política Pet</span>
+            <span className="h-px flex-1 bg-[#f3ecdb]/15" />
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
+            {PET_POLICIES.map((p, i) => (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-8% 0px" }}
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+                className="group flex flex-col gap-4 rounded-[var(--radius-card)] border border-[#f3ecdb]/12 bg-[#14271f]/50 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-[#e8b547]/40 sm:p-7"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#e07a3c]/15 text-[#e8b547] transition-colors duration-300 group-hover:bg-[#e07a3c] group-hover:text-white">
+                    <p.icon size={20} strokeWidth={1.7} />
+                  </div>
+                  <h3
+                    className="font-display text-lg leading-tight text-[#f3ecdb] sm:text-xl"
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 400, color: "#f3ecdb" }}
+                  >
+                    {p.title}
+                  </h3>
+                </div>
+                {p.text && (
+                  <p className="text-[0.86rem] leading-relaxed text-[#f3ecdb]/70">
+                    {p.text}
+                  </p>
+                )}
+                {p.items && (
+                  <ul className="flex flex-col gap-2.5">
+                    {p.items.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="flex gap-3 text-[0.86rem] leading-relaxed text-[#f3ecdb]/70"
+                      >
+                        <span
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8b547]"
+                          aria-hidden="true"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-8% 0px" }}
+            transition={{ duration: 0.6 }}
+            className="mt-10 flex justify-center"
+          >
+            <a
+              href={`${import.meta.env.BASE_URL}/pet-friendly#manual`}
+              data-cursor="cta"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#e8b547]/50 bg-[#e8b547]/10 px-6 py-3.5 text-sm font-semibold text-[#e8b547] transition-all duration-300 hover:bg-[#e8b547] hover:text-[#1f3a2e]"
+            >
+              <PawPrint size={18} />
+              Ver manual completo de viagens com pet
+            </a>
+          </motion.div>
+        </div>
+
         {/* Cãocierge highlight */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
           transition={{ duration: 0.7 }}
-          className="mt-8 overflow-hidden rounded-[var(--radius-stage)] border border-[#e8b547]/30 bg-gradient-to-br from-[#14271f] to-[#1f3a2e] p-8 sm:p-10 lg:p-12"
+          className="mt-8 overflow-hidden rounded-[var(--radius-stage)] border border-[#e8b547]/30 bg-linear-to-br from-[#14271f] to-[#1f3a2e] p-8 sm:p-10 lg:p-12"
         >
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto]">
             <div>

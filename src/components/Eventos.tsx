@@ -49,9 +49,11 @@ export default function Eventos() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-5 max-w-2xl text-[0.95rem] leading-relaxed text-[#6b5d45]"
           >
-            Eventos corporativos, casamentos, aniversários e retiros — o Portal
-            do Cacau oferece espaços cobertos e ao ar livre para celebrar entre
-            a mata e o mar, com a hospitalidade de quem recebe como família.
+            Bem-vindo à Pousada Portal do Cacau, um verdadeiro paraíso ecológico
+            no Sertão do Camburi. Com design rústico e aconchegante, estamos a
+            apenas 1.500 metros das praias de Camburi e Camburizinho. Recebemos
+            eventos corporativos, casamentos, aniversários e retiros — com
+            hospitalidade de quem recebe como família.
           </motion.p>
         </div>
 
@@ -64,7 +66,7 @@ export default function Eventos() {
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.7 }}
             whileHover={{ y: -6 }}
-            className="group relative flex flex-col overflow-hidden rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-white/70 p-8 shadow-[var(--shadow-subtle)] transition-shadow duration-300 hover:shadow-[var(--shadow-elevated)] sm:p-10"
+            className="group relative flex flex-col overflow-hidden rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-white/70 p-8 shadow-(--shadow-subtle) transition-shadow duration-300 hover:shadow-(--shadow-elevated) sm:p-10"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547] transition-colors duration-300 group-hover:bg-[#e07a3c] group-hover:text-white">
               <Briefcase size={22} strokeWidth={1.7} />
@@ -116,7 +118,7 @@ export default function Eventos() {
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.7, delay: 0.1 }}
             whileHover={{ y: -6 }}
-            className="group relative flex flex-col overflow-hidden rounded-[var(--radius-stage)] border border-[#e07a3c]/40 bg-gradient-to-br from-[#fffdf6] to-[#fbf6ea] p-8 shadow-[var(--shadow-subtle)] ring-1 ring-[#e07a3c]/15 transition-shadow duration-300 hover:shadow-[var(--shadow-elevated)] sm:p-10"
+            className="group relative flex flex-col overflow-hidden rounded-[var(--radius-stage)] border border-[#e07a3c]/40 bg-linear-to-br from-[#fffdf6] to-[#fbf6ea] p-8 shadow-(--shadow-subtle) ring-1 ring-[#e07a3c]/15 transition-shadow duration-300 hover:shadow-(--shadow-elevated) sm:p-10"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#e07a3c] text-white transition-transform duration-300 group-hover:scale-110">
               <Heart size={22} strokeWidth={1.7} fill="currentColor" />
@@ -186,10 +188,27 @@ export default function Eventos() {
             </div>
           </div>
           <a
-            href="#pets"
+            href={`${import.meta.env.BASE_URL}#pets`}
             className="shrink-0 rounded-full border-2 border-[#e8b547]/60 px-5 py-2.5 text-[0.8rem] font-semibold text-[#e8b547] transition-colors duration-300 hover:bg-[#e8b547] hover:text-[#14271f]"
           >
             Ver detalhes pet
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 flex justify-center"
+        >
+          <a
+            href={`${import.meta.env.BASE_URL}/eventos`}
+            data-cursor="cta"
+            className="inline-flex items-center gap-2 rounded-full bg-[#1f3a2e] px-6 py-3 text-[0.85rem] font-semibold text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
+          >
+            Ver todos os espaços e eventos
+            <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>

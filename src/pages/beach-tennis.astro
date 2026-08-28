@@ -1,0 +1,85 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+import CTAFinal from "../components/CTAFinal.tsx";
+---
+
+<SectionLayout
+  title="Beach Tennis"
+  eyebrow="Arena oficial"
+  description="Quadra 20×11m com iluminação noturna, raquetes e bolinhas fornecidas. Hóspedes utilizam sem custo. Aulas com o coach Robinho mediante agendamento."
+>
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-4xl">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-8">
+          <h3
+            class="mb-4 text-2xl text-[#14271f]"
+            style="font-family: var(--font-display);"
+          >
+            A quadra
+          </h3>
+          <ul class="space-y-3 text-[0.9rem] leading-relaxed text-[#4a4030]">
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Dimensões oficiais: 20m × 11m</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Iluminação noturna para jogos à noite</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Areia própria para beach tennis</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Raquetes e bolinhas disponíveis para hóspedes</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Acesso gratuito para hóspedes da pousada</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-8">
+          <h3
+            class="mb-4 text-2xl text-[#14271f]"
+            style="font-family: var(--font-display);"
+          >
+            Aulas com Robinho
+          </h3>
+          <p class="mb-4 text-[0.9rem] leading-relaxed text-[#4a4030]">
+            O coach Robinho oferece aulas para todos os níveis — do iniciante
+            ao avançado. Aulas individuais ou em grupo, com foco em técnica,
+            posicionamento e diversão.
+          </p>
+          <ul class="space-y-3 text-[0.9rem] leading-relaxed text-[#4a4030]">
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Aulas individuais e em grupo</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Todos os níveis: iniciante ao avançado</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-[#e07a3c]">●</span>
+              <span>Agendamento na recepção</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-2xl border border-[#e8b547]/40 bg-[#e8b547]/10 p-8 text-center">
+        <p class="text-[0.9rem] leading-relaxed text-[#4a4030]">
+          <span class="font-semibold text-[#14271f]">Hóspedes jogam grátis.</span>
+          {" "}Para visitantes externos e aulas com o coach, consulte valores na
+          recepção ou pelo WhatsApp.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal client:load />
+</SectionLayout>

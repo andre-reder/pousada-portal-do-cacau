@@ -1,0 +1,168 @@
+---
+import { getCollection } from "astro:content";
+import CTAFinal from "../../components/CTAFinal.tsx";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+
+const posts = await getCollection("blog");
+const sorted = posts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const CATEGORIES = [
+  "Destinos",
+  "Dicas de Viagem",
+  "Eventos",
+  "Feriados",
+  "Gastronomia Pet",
+  "Guia Completo",
+  "Hospedagem Pet Friendly",
+  "Natureza e Bem-estar",
+  "Viagem com Pets",
+];
+
+// Collect all unique tags
+const allTags = [...new Set(sorted.flatMap((p) => p.data.tags))].sort();
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+function readingTime(body?: string) {
+  const wc = body?.trim().split(/\s+/).length ?? 0;
+  return Math.max(1, Math.round(wc / 200));
+}
+
+const base = import.meta.env.BASE_URL;
+---
+
+<SectionLayout
+  title="Blog"
+  eyebrow="Histórias do Camburi"
+  description="Guias, dicas e inspirações para viajar com seu pet, explorar o litoral norte e aproveitar o melhor da vida na natureza."
+>
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-12 lg:grid-cols-[1fr_280px]">
+        <!-- Posts list -->
+        <div>
+          <div class="mb-8 flex items-center gap-4">
+            <span class="eyebrow">Posts recentes</span>
+            <span class="h-px flex-1 bg-[#d9cfb8]"></span>
+            <span class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#8a7c63]">
+              {sorted.length} {sorted.length === 1 ? "post" : "posts"}
+            </span>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2">
+            {sorted.map((post) => (
+              <article class="group flex flex-col overflow-hidden rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] transition-all hover:-translate-y-1 hover:shadow-(--shadow-elevated)">
+                {/* Cover image */}
+                {post.data.cover && (
+                  <a href={`${base}/blog/${post.id}`} class="block aspect-video overflow-hidden">
+                    <img
+                      src={post.data.cover}
+                      alt={post.data.title}
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
+                <div class="flex-1 p-6">
+                  <div class="mb-3 flex flex-wrap items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
+                    <span class="rounded-full bg-[#e07a3c]/15 px-2.5 py-1 text-[#9c4d1c]">
+                      {post.data.category}
+                    </span>
+                    <span class="text-[#6b5d45]">
+                      {formatDate(post.data.date)}
+                    </span>
+                    <span class="text-[#8a7c63]">· {readingTime(post.body)} min</span>
+                  </div>
+                  <h3
+                    class="mb-3 text-lg leading-snug text-[#14271f] transition-colors group-hover:text-[#9c4d1c]"
+                    style="font-family: var(--font-display); font-weight: 400;"
+                  >
+                    <a href={`${base}/blog/${post.id}`}>
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <p class="mb-4 text-[0.85rem] leading-relaxed text-[#4a4030] line-clamp-3">
+                    {post.data.excerpt}
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    {post.data.tags.slice(0, 4).map((tag) => (
+                      <span class="rounded-full bg-[#1f3a2e]/8 px-2 py-0.5 text-[0.65rem] font-medium text-[#3d5d49]">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div class="border-t border-[#d9cfb8] px-6 py-3">
+                  <a
+                    href={`${base}/blog/${post.id}`}
+                    class="text-[0.8rem] font-semibold text-[#9c4d1c] transition-colors hover:text-[#8b4419]"
+                  >
+                    Ler mais →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-8">
+          <!-- Categories -->
+          <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-6">
+            <h3
+              class="mb-4 text-lg text-[#14271f]"
+              style="font-family: var(--font-display);"
+            >
+              Categorias
+            </h3>
+            <ul class="space-y-2">
+              {CATEGORIES.map((cat) => {
+                const count = sorted.filter((p) => p.data.category === cat).length;
+                return (
+                  <li>
+                    <a
+                      href={`${base}/blog/categoria/${cat.toLowerCase().replace(/ /g, "-")}`}
+                      class="flex items-center justify-between rounded-lg px-3 py-2 text-[0.85rem] text-[#4a4030] transition-colors hover:bg-[#e8b547]/15 hover:text-[#14271f]"
+                    >
+                      <span>{cat}</span>
+                      <span class="text-[0.7rem] text-[#6b5d45]">{count}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          <!-- Tags cloud -->
+          <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-6">
+            <h3
+              class="mb-4 text-lg text-[#14271f]"
+              style="font-family: var(--font-display);"
+            >
+              Tags
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {allTags.map((tag) => (
+                <a
+                  href={`${base}/blog/tag/${tag.toLowerCase().replace(/ /g, "-")}`}
+                  class="rounded-full border border-[#d9cfb8] px-2.5 py-1 text-[0.72rem] text-[#3d5d49] transition-colors hover:border-[#e07a3c]/40 hover:bg-[#e07a3c]/10 hover:text-[#9c4d1c]"
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CTAFinal client:load />
+</SectionLayout>

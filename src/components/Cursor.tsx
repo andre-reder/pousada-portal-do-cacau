@@ -1,10 +1,12 @@
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import { Dog } from "lucide-react";
 import { useEffect, useState } from "react";
 
 /**
- * Botanical custom cursor.
- * - A small seed-dot at rest that grows into a soft ring over interactive
- *   elements and a leaf glyph over primary CTAs.
+ * Cacau → Cachorro custom cursor.
+ * - Rest: a cacao bean SVG (oval, brown, with the characteristic groove).
+ * - Hover: a dog face (lucide `Dog`) in sunset orange.
+ * - CTA: a larger dog face with a sunset glow.
  * - Only on pointer:fine + no reduced-motion. Native cursor hidden via
  *   body.cursor-ready (set after first move so we never leave the user
  *   cursor-less if JS fails).
@@ -21,9 +23,7 @@ export default function Cursor() {
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduced) return;
 
     setEnabled(true);
@@ -61,7 +61,6 @@ export default function Cursor() {
     window.addEventListener("mousedown", down);
     window.addEventListener("mouseup", up);
 
-    // Reveal native cursor only after we are confident the dot is on screen.
     const ready = () => document.body.classList.add("cursor-ready");
     ready();
 
@@ -76,7 +75,7 @@ export default function Cursor() {
 
   if (!enabled) return null;
 
-  const size = variant === "cta" ? 56 : variant === "hover" ? 40 : 10;
+  const size = variant === "cta" ? 56 : variant === "hover" ? 40 : 26;
 
   return (
     <AnimatePresence>
@@ -96,33 +95,66 @@ export default function Cursor() {
                   ? "rgba(224,122,60,0.28)"
                   : variant === "hover"
                   ? "rgba(243,236,219,0.14)"
-                  : "#f3ecdb",
+                  : "transparent",
             }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             style={{
-              border:
-                variant === "rest" ? "2px solid #0c1812" : "2px solid #f3ecdb",
+              border: variant === "rest" ? "none" : "2px solid #f3ecdb",
               boxShadow:
                 variant === "rest"
-                  ? "0 0 0 2px rgba(243,236,219,0.95)"
+                  ? "none"
                   : "0 0 0 1px rgba(12,24,18,0.95), 0 0 0 3px rgba(243,236,219,0.9)",
             }}
           >
-            {variant === "cta" && (
+            {variant === "rest" ? (
+              /* Cacau bean — oval with the characteristic longitudinal groove */
               <svg
-                width="20"
-                height="20"
+                width="22"
+                height="22"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ color: "#e07a3c" }}
+                aria-hidden="true"
               >
-                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-                <path d="M2 21c0-3 1.85-5.36 5.08-6" />
+                <ellipse
+                  cx="12"
+                  cy="12"
+                  rx="7.5"
+                  ry="10.5"
+                  fill="#6b4423"
+                  stroke="#4a2f18"
+                  strokeWidth="1.2"
+                />
+                <path
+                  d="M12 2.5 C 9 7, 9 17, 12 21.5"
+                  stroke="#4a2f18"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <path
+                  d="M12 2.5 C 15 7, 15 17, 12 21.5"
+                  stroke="#3a2412"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  fill="none"
+                  opacity="0.6"
+                />
+                {/* highlight */}
+                <ellipse
+                  cx="9.5"
+                  cy="8.5"
+                  rx="1.6"
+                  ry="2.4"
+                  fill="#8a5a32"
+                  opacity="0.55"
+                />
               </svg>
+            ) : (
+              <Dog
+                size={variant === "cta" ? 28 : 22}
+                strokeWidth={2}
+                style={{ color: variant === "cta" ? "#e07a3c" : "#1f3a2e" }}
+              />
             )}
           </motion.div>
         </motion.div>

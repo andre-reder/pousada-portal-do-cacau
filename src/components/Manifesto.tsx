@@ -8,7 +8,10 @@ import { Leaf, PawPrint, Waves } from "lucide-react";
 import { useRef } from "react";
 
 const MANIFESTO =
-  "Há um lugar onde a Mata Atlântica desce das montanhas e encontra o mar. Onde o som da manhã é feito de pássaros, água corrente e patas na varanda. Onde o seu pet não é tolerado — é esperado.";
+  "O melhor destino pet-friendly do litoral paulista. Há um lugar onde a Mata Atlântica desce das montanhas e encontra o mar. Onde o som da manhã é feito de pássaros, água corrente e patas na varanda. Onde o seu pet não é tolerado — é esperado.";
+
+const INTRO =
+  "A Pousada Portal do Cacau localiza-se no Sertão do Camburi, paraíso ecológico de São Sebastião, no litoral norte paulista. Nossas instalações oferecem uma atmosfera super aconchegante, totalmente pet-friendly, familiar e que lhe proporcionará momentos íntimos com a natureza e junto de quem você ama. Temos uma estrutura 100% dedicada aos pets — da hora do café até o mergulho na piscina, tudo acontece com eles!";
 
 export default function Manifesto() {
   const ref = useRef<HTMLElement>(null);
@@ -78,6 +81,16 @@ export default function Manifesto() {
                   </Word>
                 );
               })}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-8 max-w-3xl text-[0.95rem] leading-relaxed text-[#f3ecdb]/70 sm:mt-10 sm:text-[1.05rem]"
+        >
+          {INTRO}
         </motion.p>
 
         <motion.div

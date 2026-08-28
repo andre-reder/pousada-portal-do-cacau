@@ -1,0 +1,196 @@
+---
+import { Anchor, Clock, ExternalLink, Fish, Gauge, Leaf, MapPin, Mountain, Ship } from "lucide-react";
+import CTAFinal from "../components/CTAFinal.tsx";
+import Ecoturismo from "../components/Ecoturismo.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const HOW = [
+  {
+    icon: "Clock",
+    title: "Saídas e retorno",
+    text: "Nas trilhas, saída às 10h e retorno às 17h. Passeios de barco e mergulho têm cerca de 2 a 3 horas de duração.",
+  },
+  {
+    icon: "Gauge",
+    title: "Equipamentos inclusos",
+    text: "No mergulho de cilindro, equipamentos completos. Passeios de barco e canoa oferecem água, frutas e máscara para snorkel.",
+  },
+  {
+    icon: "Leaf",
+    title: "Guias biólogos",
+    text: "Em parceria com a Eco Experience, os passeios são guiados por biólogos capacitados em primeiros socorros e educação ambiental.",
+  },
+  {
+    icon: "MapPin",
+    title: "Reserva junto com a estadia",
+    text: "As aventuras podem ser reservadas junto com sua hospedagem — escolha o seu ritmo e monte o roteiro com a gente.",
+  },
+];
+
+const LEVELS = [
+  { color: "#3d5d49", label: "Fácil", text: "Ideal para famílias e primeiros contatos com trilhas e cachoeiras." },
+  { color: "#9c4d1c", label: "Médio", text: "Exige um pouco de fôlego — a recompensa são poços naturais e paisagens preservadas." },
+  { color: "#8b4419", label: "Difícil", text: "Para aventureiros: trechos de subida e mata fechada até praias desertas." },
+  { color: "#2c6e7f", label: "Iniciantes", text: "Atividades indicadas para quem nunca fez (mergulho, rapel)." },
+];
+---
+
+<SectionLayout
+  title="Ecoturismo"
+  eyebrow="Aventuras na natureza"
+  description="Trilhas, cachoeiras, mergulho, passeios de barco e rapel — em parceria com a Eco Experience, com guias biólogos capacitados em primeiros socorros."
+>
+  {/* Seção principal — aventuras com tabs */}
+  <Ecoturismo client:load />
+
+  {/* Como funcionam */}
+  <section class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-14">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">i</span>
+          <span class="eyebrow">Como funcionam as aventuras</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.6rem] lg:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Tudo organizado,
+          <span class="block italic text-[#2c6e7f]">do embarque ao retorno.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {HOW.map((h) => (
+          <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6 transition-shadow hover:shadow-(--shadow-elevated)">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+              {h.icon === "Clock" && <Clock size={20} />}
+              {h.icon === "Gauge" && <Gauge size={20} />}
+              {h.icon === "Leaf" && <Leaf size={20} />}
+              {h.icon === "MapPin" && <MapPin size={20} />}
+            </div>
+            <h3 class="mb-2 text-lg text-[#14271f]" style="font-family: var(--font-display); font-weight: 400;">{h.title}</h3>
+            <p class="text-[0.85rem] leading-relaxed text-[#4a4030]">{h.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Níveis de dificuldade */}
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-12">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">ii</span>
+          <span class="eyebrow">Níveis de dificuldade</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.4rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Escolha a trilha
+          <span class="italic text-[#2c6e7f]"> do seu fôlego.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        {LEVELS.map((l) => (
+          <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-6">
+            <span
+              class="mb-4 inline-flex w-fit items-center rounded-full border px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em]"
+              style={`color:${l.color}; border-color:${l.color}55; background:${l.color}11;`}
+            >
+              {l.label}
+            </span>
+            <p class="text-[0.85rem] leading-relaxed text-[#4a4030]">{l.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Parcerias */}
+  <section class="bg-[#14271f] px-6 py-20 text-[#f3ecdb] sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-12">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#e8b547;">iii</span>
+          <span class="eyebrow text-[#e8b547]/90">Nossas parcerias</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#f3ecdb] sm:text-[2.6rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Quem conhece a mata
+          <span class="block italic text-[#e8b547]">guia você.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+        <div class="rounded-2xl border border-[#f3ecdb]/12 bg-[#1f3a2e]/50 p-7 backdrop-blur-sm sm:p-8">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#e07a3c]/15 text-[#e8b547]">
+            <Leaf size={20} />
+          </div>
+          <h3 class="mb-2 text-xl text-[#f3ecdb]" style="font-family: var(--font-display); font-weight: 400;">Eco Experience</h3>
+          <p class="text-[0.88rem] leading-relaxed text-[#f3ecdb]/75">
+            Nossa principal parceira em ecoturismo — guias biólogos capacitados
+            em primeiros socorros, com foco em educação ambiental e conservação.
+            Trilhas, mergulho, passeios de barco e rapel conduzidos com
+            segurança e respeito à natureza.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[#f3ecdb]/12 bg-[#1f3a2e]/50 p-7 backdrop-blur-sm sm:p-8">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#e07a3c]/15 text-[#e8b547]">
+            <Ship size={20} />
+          </div>
+          <h3 class="mb-2 text-xl text-[#f3ecdb]" style="font-family: var(--font-display); font-weight: 400;">MaresiasTur</h3>
+          <p class="text-[0.88rem] leading-relaxed text-[#f3ecdb]/75">
+            Cardápio completo de passeios marítimos pela região — ilhas,
+            mergulho e contemplação da vida marinha.
+          </p>
+          <a
+            href="https://maresiastur.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-5 inline-flex items-center gap-2 rounded-full border border-[#e8b547]/50 px-5 py-2.5 text-[0.8rem] font-semibold text-[#e8b547] transition-colors hover:bg-[#e8b547] hover:text-[#14271f]"
+          >
+            Cardápio MaresiasTur
+            <ExternalLink size={14} />
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {[
+          { icon: "Mountain", label: "Trilhas & cachoeiras" },
+          { icon: "Fish", label: "Mergulho" },
+          { icon: "Ship", label: "Passeios de barco" },
+          { icon: "Anchor", label: "Rapel" },
+        ].map((c) => (
+          <div class="flex items-center gap-2.5 rounded-xl border border-[#f3ecdb]/12 bg-[#1f3a2e]/40 px-4 py-3">
+            <span class="text-[#e8b547]">
+              {c.icon === "Mountain" && <Mountain size={16} />}
+              {c.icon === "Fish" && <Fish size={16} />}
+              {c.icon === "Ship" && <Ship size={16} />}
+              {c.icon === "Anchor" && <Anchor size={16} />}
+            </span>
+            <span class="text-[0.78rem] font-medium text-[#f3ecdb]/85">{c.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    items={[
+      { href: "/acomodacoes", label: "Acomodações", hint: "Descanse entre uma aventura e outra" },
+      { href: "/comodidades", label: "Estrutura & comodidades", hint: "Piscina, sauna e hidromassagem após as trilhas" },
+      { href: "/sustentabilidade", label: "Sustentabilidade", hint: "Hospitalidade e conservação caminhando juntas" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>

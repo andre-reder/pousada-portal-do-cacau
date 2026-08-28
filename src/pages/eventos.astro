@@ -1,0 +1,170 @@
+---
+import { Briefcase, Cake, Check, Heart, Maximize, Sun, TreePalm, Users, Waves } from "lucide-react";
+import CTAFinal from "../components/CTAFinal.tsx";
+import Eventos from "../components/Eventos.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const SPACES = [
+  { icon: "Maximize", value: "400 m²", label: "Espaço coberto com toldos e piso de areia" },
+  { icon: "Users", value: "49 m²", label: "Sala fechada para reuniões" },
+  { icon: "Users", value: "até 50", label: "Pessoas acomodadas confortavelmente" },
+  { icon: "Sun", value: "Ao ar livre", label: "Cerimônia sob as árvores da Mata Atlântica" },
+];
+
+const TYPES = [
+  { icon: "Briefcase", title: "Corporativo & retiros", text: "Eventos corporativos, retiros e encontros de equipe com estrutura completa para trabalhar e descansar." },
+  { icon: "Heart", title: "Casamentos & lua de mel", text: "Cerimônia entre a mata e o mar, hospedagem dos padrinhos com descontos especiais e acomodação decorada para os noivos." },
+  { icon: "Cake", title: "Aniversários — inclusive do pet", text: "Comemoração temática, cardápio pet com orientação veterinária, bolo pet e o espaço com piscina de 10m." },
+  { icon: "TreePalm", title: "Grupos & eventos esportivos", text: "Recebemos grupos mediante reserva antecipada — ideal para grupos esportivos que aproveitam a arena de beach tennis e o mar." },
+];
+
+const INCLUDES = [
+  "Estrutura coberta de 400 m² + sala de reuniões de 49 m²",
+  "Hospedagem dos padrinhos e convidados com descontos especiais",
+  "Acomodação com decoração especial de lua de mel",
+  "Recepção 24 horas para chegadas a qualquer hora",
+  "Arena de beach tennis, piscinas e sauna à disposição",
+  "A 1.500 m das praias de Camburi e Camburizinho",
+];
+---
+
+<SectionLayout
+  title="Eventos"
+  eyebrow="Celebre com a natureza"
+  description="Eventos corporativos, casamentos, aniversários e retiros — com espaço de 400m² coberto, sala de reuniões e a Mata Atlântica como cenário."
+>
+  {/* Seção principal — corporate, casamentos, aniversários */}
+  <Eventos client:load />
+
+  {/* Espaços & capacidades */}
+  <section class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-14">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">i</span>
+          <span class="eyebrow">Espaços & capacidades</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.6rem] lg:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Estrutura para celebrar,
+          <span class="block italic text-[#9c4d1c]">natureza para emocionar.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {SPACES.map((s) => (
+          <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-7 transition-shadow hover:shadow-(--shadow-elevated)">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+              {s.icon === "Maximize" && <Maximize size={22} />}
+              {s.icon === "Users" && <Users size={22} />}
+              {s.icon === "Sun" && <Sun size={22} />}
+            </div>
+            <span class="font-display text-2xl text-[#14271f]" style="font-family: var(--font-display); font-weight: 400;">{s.value}</span>
+            <span class="mt-1.5 text-[0.82rem] leading-snug text-[#6b5d45]">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Tipos de evento */}
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-14">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">ii</span>
+          <span class="eyebrow">Tipos de evento</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.4rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Cada celebração
+          <span class="italic text-[#9c4d1c]"> com a cara dela.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+        {TYPES.map((t) => (
+          <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-7 transition-shadow hover:shadow-(--shadow-elevated)">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#e07a3c]/15 text-[#9c4d1c]">
+              {t.icon === "Briefcase" && <Briefcase size={20} />}
+              {t.icon === "Heart" && <Heart size={20} />}
+              {t.icon === "Cake" && <Cake size={20} />}
+              {t.icon === "TreePalm" && <TreePalm size={20} />}
+            </div>
+            <h3 class="mb-2 text-lg text-[#14271f]" style="font-family: var(--font-display); font-weight: 400;">{t.title}</h3>
+            <p class="text-[0.86rem] leading-relaxed text-[#4a4030]">{t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* O que inclui */}
+  <section class="bg-[#14271f] px-6 py-20 text-[#f3ecdb] sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-16">
+        <div>
+          <div class="mb-5 flex items-center gap-4">
+            <span class="field-no text-2xl" style="color:#e8b547;">iii</span>
+            <span class="eyebrow text-[#e8b547]/90">O que incluímos</span>
+          </div>
+          <h2
+            class="text-[2rem] leading-[1.05] text-[#f3ecdb] sm:text-[2.6rem]"
+            style="font-family: var(--font-display); font-weight: 400;"
+          >
+            Hospitalidade de quem
+            <span class="block italic text-[#e8b547]">recebe como família.</span>
+          </h2>
+          <p class="mt-5 max-w-md text-[0.9rem] leading-relaxed text-[#f3ecdb]/75">
+            Do planejamento ao último convidado, cuidamos dos detalhes para que
+            você só se preocupe em celebrar.
+          </p>
+        </div>
+
+        <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {INCLUDES.map((it) => (
+            <li class="flex items-start gap-3 rounded-xl border border-[#f3ecdb]/12 bg-[#1f3a2e]/50 p-4 backdrop-blur-sm">
+              <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#e07a3c] text-white">
+                <Check size={14} />
+              </span>
+              <span class="text-[0.82rem] leading-snug text-[#f3ecdb]/85">{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 rounded-2xl border border-[#e8b547]/30 bg-linear-to-br from-[#14271f] to-[#1f3a2e] p-7 text-center sm:flex-row sm:justify-between sm:text-left">
+        <div class="flex items-center gap-3">
+          <Waves size={22} class="text-[#e8b547]" />
+          <p class="text-[0.9rem] leading-relaxed text-[#f3ecdb]/85">
+            <span class="font-semibold text-[#f3ecdb]">Solicite uma proposta</span>{" "}
+            personalizada para o seu evento.
+          </p>
+        </div>
+        <a
+          href="https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Quero%20solicitar%20uma%20proposta%20de%20evento%20na%20Pousada%20Portal%20do%20Cacau."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 rounded-full bg-[#e07a3c] px-6 py-3 text-[0.85rem] font-semibold text-white transition-colors hover:bg-[#c25f28]"
+        >
+          Falar com a gente
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    items={[
+      { href: "/acomodacoes", label: "Acomodações", hint: "Hospede padrinhos e convidados" },
+      { href: "/pet-friendly", label: "Pet Friendly", hint: "Aniversário do seu pet com piscina de 10m" },
+      { href: "/beach-tennis", label: "Beach Tennis", hint: "Arena para grupos esportivos" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>

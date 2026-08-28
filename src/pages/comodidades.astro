@@ -1,0 +1,123 @@
+---
+import { Bath, Check, Clock, Coffee, Dumbbell, Flame, PawPrint, Sparkles, Waves } from "lucide-react";
+import Comodidades from "../components/Comodidades.tsx";
+import CTAFinal from "../components/CTAFinal.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const INCLUDED = [
+  { icon: "Coffee", label: "Café da manhã (humanos e pets)" },
+  { icon: "Waves", label: "Piscina semiolímpica" },
+  { icon: "Dumbbell", label: "Arena Beach Tennis (hóspedes)" },
+  { icon: "Sparkles", label: "Wi-Fi em toda a pousada" },
+  { icon: "PawPrint", label: "Piscina 10m, Bosque Play Pet" },
+  { icon: "Clock", label: "Estacionamento gratuito" },
+];
+
+const EXTRA = [
+  { icon: "Flame", label: "Sauna seca", hint: "Sessões agendadas na recepção" },
+  { icon: "Bath", label: "Hidromassagem aquecida", hint: "Uso agendado" },
+  { icon: "Bath", label: "Espaço de banho SPA'PET", hint: "Splash Dog (profissional) à parte" },
+  { icon: "Dumbbell", label: "Aulas de beach tennis", hint: "Coach Robinho — agendamento à parte" },
+  { icon: "Coffee", label: "Lounge & Bar", hint: "Drinques e petiscos consumidos à parte" },
+];
+---
+
+<SectionLayout
+  title="Estrutura & Comodidades"
+  eyebrow="Tudo que você precisa"
+  description="Café da manhã, lounge bar, piscinas, sauna, arena de beach tennis, espaço pet e muito mais — toda a estrutura para uma estadia completa."
+>
+  {/* Visão categorizada (diferente da home) */}
+  <Comodidades client:load categorized={true} />
+
+  {/* Incluso vs à parte */}
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10 sm:mb-14">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">i</span>
+          <span class="eyebrow">O que está incluso · O que é à parte</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.6rem] lg:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Sem surpresas na hora
+          <span class="block italic text-[#2c6e7f]">de aproveitar.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+        {/* Incluso */}
+        <div class="rounded-2xl border border-[#3d5d49]/30 bg-[#3d5d49]/5 p-7 sm:p-8">
+          <div class="mb-6 flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#3d5d49] text-white">
+              <Check size={20} />
+            </span>
+            <h3 class="text-xl text-[#14271f]" style="font-family: var(--font-display); font-weight: 400;">
+              Incluso na diária
+            </h3>
+          </div>
+          <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {INCLUDED.map((it) => (
+              <li class="flex items-center gap-3 rounded-xl border border-[#d9cfb8] bg-[#fbf6ea] px-4 py-3">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#3d5d49]/15 text-[#3d5d49]">
+                  {it.icon === "Coffee" && <Coffee size={15} />}
+                  {it.icon === "Waves" && <Waves size={15} />}
+                  {it.icon === "Dumbbell" && <Dumbbell size={15} />}
+                  {it.icon === "Sparkles" && <Sparkles size={15} />}
+                  {it.icon === "PawPrint" && <PawPrint size={15} />}
+                  {it.icon === "Clock" && <Clock size={15} />}
+                </span>
+                <span class="text-[0.82rem] font-medium leading-snug text-[#2a2418]">{it.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* À parte */}
+        <div class="rounded-2xl border border-[#e07a3c]/30 bg-[#e07a3c]/5 p-7 sm:p-8">
+          <div class="mb-6 flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#e07a3c] text-white">
+              <Sparkles size={20} />
+            </span>
+            <h3 class="text-xl text-[#14271f]" style="font-family: var(--font-display); font-weight: 400;">
+              Serviços à parte / com agendamento
+            </h3>
+          </div>
+          <ul class="flex flex-col gap-3">
+            {EXTRA.map((it) => (
+              <li class="flex items-center gap-3 rounded-xl border border-[#d9cfb8] bg-[#fbf6ea] px-4 py-3.5">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#e07a3c]/15 text-[#9c4d1c]">
+                  {it.icon === "Flame" && <Flame size={15} />}
+                  {it.icon === "Bath" && <Bath size={15} />}
+                  {it.icon === "Dumbbell" && <Dumbbell size={15} />}
+                  {it.icon === "Coffee" && <Coffee size={15} />}
+                </span>
+                <span class="flex flex-col">
+                  <span class="text-[0.82rem] font-semibold leading-snug text-[#2a2418]">{it.label}</span>
+                  <span class="text-[0.72rem] leading-snug text-[#6b5d45]">{it.hint}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-5 text-[0.78rem] leading-relaxed text-[#6b5d45]">
+            Valores e disponibilidade dos serviços à parte podem ser
+            confirmados na recepção ou pelo WhatsApp.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    items={[
+      { href: "/pet-friendly", label: "Pet Friendly", hint: "Toda a estrutura dedicada aos pets" },
+      { href: "/beach-tennis", label: "Beach Tennis", hint: "Arena 20×11m, grátis para hóspedes" },
+      { href: "/acomodacoes", label: "Acomodações", hint: "Suítes e bangalôs com cozinha e varanda" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>

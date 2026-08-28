@@ -1,0 +1,107 @@
+---
+import { getCollection } from "astro:content";
+import CTAFinal from "../../../components/CTAFinal.tsx";
+import SectionLayout from "../../../layouts/SectionLayout.astro";
+
+export async function getStaticPaths() {
+  const CATEGORIES = [
+    "Destinos",
+    "Dicas de Viagem",
+    "Eventos",
+    "Feriados",
+    "Gastronomia Pet",
+    "Guia Completo",
+    "Hospedagem Pet Friendly",
+    "Natureza e Bem-estar",
+    "Viagem com Pets",
+  ];
+  return CATEGORIES.map((cat) => ({
+    params: { category: cat.toLowerCase().replace(/ /g, "-") },
+    props: { category: cat },
+  }));
+}
+
+const { category } = Astro.props;
+const all = await getCollection("blog");
+const posts = all
+  .filter((p) => p.data.category === category)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+const base = import.meta.env.BASE_URL;
+---
+
+<SectionLayout
+  title={category}
+  eyebrow="Categoria"
+  description={`${posts.length} ${posts.length === 1 ? "post" : "posts"} na categoria ${category}.`}
+>
+  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-8">
+        <a
+          href={`${base}/blog`}
+          class="text-[0.8rem] font-semibold text-[#9c4d1c] transition-colors hover:text-[#8b4419]"
+        >
+          ← Voltar ao blog
+        </a>
+      </div>
+
+      {posts.length === 0 ? (
+        <p class="py-20 text-center text-[#6b5d45]">
+          Nenhum post nesta categoria ainda. Volte em breve!
+        </p>
+      ) : (
+        <div class="grid gap-6 sm:grid-cols-2">
+          {posts.map((post) => (
+            <article class="group flex flex-col overflow-hidden rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] transition-all hover:-translate-y-1 hover:shadow-(--shadow-elevated)">
+              {post.data.cover && (
+                <a href={`${base}/blog/${post.id}`} class="block aspect-video overflow-hidden">
+                  <img
+                    src={post.data.cover}
+                    alt={post.data.title}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </a>
+              )}
+              <div class="flex-1 p-6">
+                <div class="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#6b5d45]">
+                  {formatDate(post.data.date)}
+                </div>
+                <h3
+                  class="mb-3 text-lg leading-snug text-[#14271f] transition-colors group-hover:text-[#9c4d1c]"
+                  style="font-family: var(--font-display); font-weight: 400;"
+                >
+                  <a href={`${base}/blog/${post.id}`}>
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p class="text-[0.85rem] leading-relaxed text-[#4a4030] line-clamp-3">
+                  {post.data.excerpt}
+                </p>
+              </div>
+              <div class="border-t border-[#d9cfb8] px-6 py-3">
+                <a
+                  href={`${base}/blog/${post.id}`}
+                  class="text-[0.8rem] font-semibold text-[#9c4d1c] transition-colors hover:text-[#8b4419]"
+                >
+                  Ler mais →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CTAFinal client:load />
+</SectionLayout>

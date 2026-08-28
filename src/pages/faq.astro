@@ -1,0 +1,87 @@
+---
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import CTAFinal from "../components/CTAFinal.tsx";
+import FAQ from "../components/FAQ.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+---
+
+<SectionLayout
+  title="Perguntas Frequentes"
+  eyebrow="Tire suas dúvidas"
+  description="Localização, pets, check-in, café da manhã, pagamentos e muito mais — tudo o que você precisa saber antes de reservar."
+>
+  {/* FAQ categorizado (diferente da home) */}
+  <FAQ client:load categorized={true} />
+
+  {/* Contato direto */}
+  <section class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-10 sm:mb-12">
+        <div class="mb-5 flex items-center gap-4">
+          <span class="field-no text-2xl" style="color:#9c4d1c;">i</span>
+          <span class="eyebrow">Não encontrou? Fale com a gente</span>
+        </div>
+        <h2
+          class="max-w-3xl text-[2rem] leading-[1.05] text-[#14271f] sm:text-[2.6rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          A recepção está
+          <span class="italic text-[#9c4d1c]"> sempre de portas abertas.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <a
+          href="https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20reservas%20na%20Pousada%20Portal%20do%20Cacau."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6 transition-all hover:-translate-y-1 hover:shadow-(--shadow-elevated)"
+        >
+          <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+            <Phone size={20} />
+          </span>
+          <span class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#8a7c63]">WhatsApp / Telefone</span>
+          <span class="mt-1 text-[0.92rem] font-medium text-[#14271f]">(12) 97410-8006</span>
+        </a>
+
+        <a
+          href="mailto:reservas@portaldocacau.com.br"
+          class="group flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6 transition-all hover:-translate-y-1 hover:shadow-(--shadow-elevated)"
+        >
+          <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+            <Mail size={20} />
+          </span>
+          <span class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#8a7c63]">E-mail</span>
+          <span class="mt-1 text-[0.92rem] font-medium text-[#14271f]">reservas@portaldocacau.com.br</span>
+        </a>
+
+        <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6">
+          <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+            <MapPin size={20} />
+          </span>
+          <span class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#8a7c63]">Endereço</span>
+          <span class="mt-1 text-[0.92rem] font-medium leading-snug text-[#14271f]">Rua Tijucas, 895 — Sertão do Camburi, São Sebastião — SP</span>
+        </div>
+
+        <div class="flex flex-col rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6">
+          <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+            <Clock size={20} />
+          </span>
+          <span class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#8a7c63]">Recepção</span>
+          <span class="mt-1 text-[0.92rem] font-medium text-[#14271f]">24 horas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    items={[
+      { href: "/pet-friendly", label: "Pet Friendly", hint: "Política e estrutura completa para pets" },
+      { href: "/acomodacoes", label: "Acomodações", hint: "Suítes e bangalôs — compare e escolha" },
+      { href: "/ecoturismo", label: "Ecoturismo", hint: "Trilhas, mergulho, barco e rapel" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>
