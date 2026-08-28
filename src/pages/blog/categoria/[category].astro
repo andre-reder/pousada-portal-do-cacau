@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import CTAFinal from "../../../components/CTAFinal.tsx";
 import SectionLayout from "../../../layouts/SectionLayout.astro";
+import { withBase } from "@/utils/withBase";
 
 export async function getStaticPaths() {
   const CATEGORIES = [
@@ -65,7 +66,7 @@ const base = import.meta.env.BASE_URL;
               {post.data.cover && (
                 <a href={`${base}/blog/${post.id}`} class="block aspect-video overflow-hidden">
                   <img
-                    src={post.data.cover}
+                    src={withBase(post.data.cover, base)}
                     alt={post.data.title}
                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
