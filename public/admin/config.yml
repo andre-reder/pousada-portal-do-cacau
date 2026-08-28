@@ -7,11 +7,16 @@
 local_backend: true
 
 # ─── Production backend ───
-# Uses git-gateway which works with Netlify Identity.
-# If deploying on GitHub Pages, see docs/DECAP_OAUTH.md for setup.
+# In production (no decap-server running), CMS falls back to GitHub OAuth.
+# The Cloudflare Worker handles the OAuth exchange.
+# Client Secret is stored ONLY in the Cloudflare Worker env vars — never here.
 backend:
-  name: git-gateway
+  name: github
+  repo: andre-reder/pousada-portal-do-cacau
   branch: main
+  base_url: https://decap-cms-github-oauth-api.andrereder.workers.dev
+  auth_type: oauth
+  app_id: Ov23liYRLkawGKcdh2rV
 
 # ─── Media ───
 # Images uploaded through the CMS go to public/assets/blog so they're
