@@ -34,10 +34,11 @@
    ### Opção A: Cloudflare Worker (recomendado, gratuito)
    1. Crie conta em cloudflare.com
    2. Workers & Pages → Create Worker
-   3. Cole o código de: https://github.com/decaporg/decap-cms-oauth-provider
+   3. Cole o código de: https://github.com/sterlingwes/decap-proxy
+      (alternativa: https://github.com/ottmartens/decap-cms-github-oauth-provider-cloudflare)
    4. Configure as variáveis:
-      - `GITHUB_CLIENT_ID` = seu Client ID
-      - `GITHUB_CLIENT_SECRET` = seu Client Secret
+      - `GITHUB_OAUTH_ID` = seu Client ID
+      - `GITHUB_OAUTH_SECRET` = seu Client Secret
       - `OAUTH_CALLBACK_URL` = `https://andre-reder.github.io/pousada-portal-do-cacau/admin/`
    5. Anote a URL do Worker (ex: `https://pousada-oauth.seu-usuario.workers.dev`)
 
@@ -52,9 +53,9 @@
      name: github
      repo: andre-reder/pousada-portal-do-cacau
      branch: main
+     base_url: https://seu-oauth-proxy.workers.dev
      auth_type: oauth
      app_id: SEU_CLIENT_ID
-     proxy_url: https://seu-oauth-proxy.workers.dev
    ```
 
 ### Fluxo do dono para criar um blog
