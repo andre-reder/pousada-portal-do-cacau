@@ -38,10 +38,11 @@ jobs:
       - name: Build with Astro
         run: yarn build
         env:
-          # Astro picks up the base path from astro.config.mjs
-          # GitHub Pages serves at https://<user>.github.io/<repo>/
-          # Our base is already /pousada-portal-do-cacau-9eb6c0
-          SITE: https://portaldocacau.com.br
+          # GitHub Pages serves at https://<user>.github.io/<repo-name>/
+          # The repo is named "pousada-portal-do-cacau" so base must match.
+          # Local dev uses /pousada-portal-do-cacau-9eb6c0 (the folder name).
+          BASE: /pousada-portal-do-cacau
+          SITE: https://andre-reder.github.io
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

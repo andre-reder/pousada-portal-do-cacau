@@ -6,7 +6,12 @@
     <meta name="robots" content="noindex" />
     <title>Admin · Pousada Portal do Cacau</title>
     <link rel="icon" href="data:," />
-    <base href="/pousada-portal-do-cacau-9eb6c0/admin/" />
+    <script>
+      // Set <base> dynamically — works for both local dev and production paths
+      var path = window.location.pathname;
+      var adminBase = path.substring(0, path.indexOf('admin/') + 7) || '/admin/';
+      document.write('<base href="' + adminBase + '" />');
+    </script>
     <style>
       body {
         font-family: system-ui, sans-serif;
