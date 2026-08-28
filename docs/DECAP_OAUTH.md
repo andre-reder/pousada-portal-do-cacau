@@ -17,6 +17,17 @@
    - Authorization callback URL: `https://andre-reder.github.io/pousada-portal-do-cacau/admin/`
    - Anote o **Client ID** e gere um **Client Secret**
 
+   > **Domínio próprio:** se você já sabe que vai usar `portaldocacau.com.br`
+   > em breve, configure o OAuth App já com as URLs do domínio próprio:
+   > - Homepage URL: `https://portaldocacau.com.br/`
+   > - Authorization callback URL: `https://portaldocacau.com.br/admin/`
+   >
+   > O OAuth vai falhar até o domínio apontar, mas quando apontar já funciona
+   > sem precisar editar de novo. O **Client ID e Client Secret não mudam**
+   > — você só edita as URLs se precisar. O desenvolvimento local
+   > (`local_backend: true` com `yarn admin`) continua funcionando
+   > independente das URLs configuradas no OAuth App.
+
 4. **Proxy OAuth** — o GitHub Pages é estático, então precisa de um proxy
    para trocar o code OAuth por um token. Opções gratuitas:
 
