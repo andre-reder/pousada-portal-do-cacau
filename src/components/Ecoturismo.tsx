@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { CONTACT } from "./cn";
+import { pathWithBase } from "@/utils/base";
 
 import alcatrazesImg from "../../assets/alcatrazes/image.png";
 import barcoImg from "../../assets/barco/image.png";
@@ -317,7 +318,7 @@ export default function Ecoturismo() {
           className="mt-8 flex justify-center"
         >
           <a
-            href={`${import.meta.env.BASE_URL}/ecoturismo`}
+            href={pathWithBase("/ecoturismo")}
             data-cursor="cta"
             className="group inline-flex items-center gap-2 rounded-full border-2 border-[#1f3a2e] bg-transparent px-6 py-3 text-[0.85rem] font-semibold text-[#1f3a2e] transition-all duration-300 hover:bg-[#1f3a2e] hover:text-[#f3ecdb]"
           >

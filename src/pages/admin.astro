@@ -1,6 +1,8 @@
 ---
+import { pathWithBase } from "@/utils/base";
+
 // Redirect /admin to the Decap CMS static page
-const target = `${import.meta.env.BASE_URL}/admin/index.html`;
+const target = pathWithBase("/admin/index.html");
 ---
 <html>
   <head>

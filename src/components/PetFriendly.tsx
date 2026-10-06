@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 import { CONTACT } from "./cn";
+import { pathWithBase } from "@/utils/base";
 
 const PET_FEATURES = [
   {
@@ -266,7 +267,7 @@ export default function PetFriendly() {
             className="mt-10 flex justify-center"
           >
             <a
-              href={`${import.meta.env.BASE_URL}/pet-friendly#manual`}
+              href={pathWithBase("/pet-friendly#manual")}
               data-cursor="cta"
               className="group inline-flex items-center gap-2 rounded-full border border-[#e8b547]/50 bg-[#e8b547]/10 px-6 py-3.5 text-sm font-semibold text-[#e8b547] transition-all duration-300 hover:bg-[#e8b547] hover:text-[#1f3a2e]"
             >

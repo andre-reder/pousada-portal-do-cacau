@@ -10,6 +10,7 @@ import {
     Users,
 } from "lucide-react";
 import { CONTACT } from "./cn";
+import { pathWithBase } from "@/utils/base";
 
 export default function Eventos() {
   return (
@@ -188,7 +189,7 @@ export default function Eventos() {
             </div>
           </div>
           <a
-            href={`${import.meta.env.BASE_URL}#pets`}
+            href={pathWithBase("#pets")}
             className="shrink-0 rounded-full border-2 border-[#e8b547]/60 px-5 py-2.5 text-[0.8rem] font-semibold text-[#e8b547] transition-colors duration-300 hover:bg-[#e8b547] hover:text-[#14271f]"
           >
             Ver detalhes pet
@@ -203,7 +204,7 @@ export default function Eventos() {
           className="mt-8 flex justify-center"
         >
           <a
-            href={`${import.meta.env.BASE_URL}/eventos`}
+            href={pathWithBase("/eventos")}
             data-cursor="cta"
             className="inline-flex items-center gap-2 rounded-full bg-[#1f3a2e] px-6 py-3 text-[0.85rem] font-semibold text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
           >

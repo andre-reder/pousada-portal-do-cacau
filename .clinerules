@@ -1,0 +1,7 @@
+# Cline / Roo Rules — pousada-portal-do-cacau-9eb6c0
+Consult the skills library in `skills/` before implementing or modifying any UI/UX, animations, or 3D features.
+Key guides:
+- UI/UX: skills/ui-ux-pro-max/SKILL.md
+- Frontend Design: skills/frontend-design/SKILL.md
+- GSAP Animations: skills/gsap-*/SKILL.md
+- Three.js: skills/threejs-*/SKILL.md

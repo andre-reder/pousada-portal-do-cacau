@@ -1,40 +1,91 @@
 ---
 import logoUrl from '../../assets/logo/image.png'
+import SchemaOrg from '../components/SchemaOrg.astro'
+import Tracking from '../components/Tracking.astro'
+import { SITE_CONFIG } from '../config/site'
 import '../styles/tailwind.css'
 
 interface Props {
   title?: string
   description?: string
+  image?: string
+  type?: string
+  noindex?: boolean
 }
-const { title = 'Landing Page', description = '' } = Astro.props
-const siteUrl = 'https://portaldocacau.com.br'
-const fullTitle = title.includes('Portal do Cacau') ? title : `${title} · Pousada Portal do Cacau`
+
+const {
+  title = SITE_CONFIG.title,
+  description = SITE_CONFIG.description,
+  image = logoUrl.src,
+  type = 'website',
+  noindex = false,
+} = Astro.props
+
+const siteUrl = SITE_CONFIG.url
+const currentPath = Astro.url.pathname === '/' ? '' : Astro.url.pathname.replace(/\/$/, '')
+const canonicalUrl = `${siteUrl}${currentPath}/`
+const fullTitle = title.includes('Portal do Cacau') ? title : `${title} · ${SITE_CONFIG.name}`
+const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
 ---
 <!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Language" content="pt-BR" />
+
+    <!-- SEO Meta Tags Primárias -->
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={robotsContent} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Identidade Visual & Tema do Navegador -->
+    <meta name="theme-color" content={SITE_CONFIG.themeColor} />
+    <meta name="msapplication-TileColor" content={SITE_CONFIG.themeColor} />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href={logoUrl.src} />
     <link rel="apple-touch-icon" href={logoUrl.src} />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Pousada Portal do Cacau" />
+    <!-- Verificações de Domínio (Search Console / Meta Business) -->
+    {SITE_CONFIG.tracking.googleSiteVerification && (
+      <meta name="google-site-verification" content={SITE_CONFIG.tracking.googleSiteVerification} />
+    )}
+    {SITE_CONFIG.tracking.facebookDomainVerification && (
+      <meta name="facebook-domain-verification" content={SITE_CONFIG.tracking.facebookDomainVerification} />
+    )}
+
+    <!-- Open Graph (Facebook, Instagram, WhatsApp, LinkedIn) -->
+    <meta property="og:locale" content={SITE_CONFIG.locale} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE_CONFIG.title} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={logoUrl.src} />
-    <meta property="og:url" content={`${siteUrl}${Astro.url.pathname}`} />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="article:publisher" content={SITE_CONFIG.social.facebook} />
 
-    <!-- Twitter -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={logoUrl.src} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-    <title>{fullTitle}</title>
+    <!-- Schema.org JSON-LD (Rich Snippets / Google Knowledge Graph / Hotel) -->
+    <SchemaOrg
+      title={fullTitle}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      imageUrl={ogImageUrl}
+    />
+
+    <!-- Tags de Tráfego Pago & Rastreamento (Google Ads, GA4, Meta Pixel, GTM) -->
+    <Tracking />
   </head>
   <body>
     <slot />

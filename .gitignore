@@ -24,3 +24,9 @@ pnpm-debug.log*
 
 # Decap CMS standalone bundle (downloaded by scripts/setup-admin.sh)
 public/admin/decap-cms/
+
+# AI skills and IDE configs
+skills/
+.agents/
+.devin/
+.cursor/

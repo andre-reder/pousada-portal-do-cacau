@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { HelpCircle, Plus } from "lucide-react";
 import { useState } from "react";
 import { CONTACT } from "./cn";
+import { pathWithBase } from "@/utils/base";
 
 type Category =
   | "Estadia & check-in"
@@ -377,7 +378,7 @@ export default function FAQ({ categorized = false }: { categorized?: boolean } =
           <p className="text-sm text-[#4a4030]">
             Ficou com outra dúvida?{" "}
             <a
-              href={`${import.meta.env.BASE_URL}/faq`}
+              href={pathWithBase("/faq")}
               data-cursor="cta"
               className="font-semibold text-[#9c4d1c] underline-offset-4 transition-colors hover:text-[#8b4419] hover:underline"
             >

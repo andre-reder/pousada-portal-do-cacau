@@ -9,6 +9,7 @@ import { useRef } from "react";
 import droneVideo from "../../assets/main-video/drone-tour-hero.mp4";
 import dronePoster from "../../assets/main-video/drone-tour-poster.jpg";
 import { CONTACT } from "./cn";
+import { pathWithBase } from "@/utils/base";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -201,7 +202,7 @@ export default function Hero() {
               Reservar pelo WhatsApp
             </a>
             <a
-              href={`${import.meta.env.BASE_URL}#manifesto`}
+              href={pathWithBase("#manifesto")}
               className="group inline-flex items-center gap-2 rounded-full border-2 border-[#f3ecdb]/45 bg-white/10 px-6 py-3.5 text-sm font-semibold text-[#f3ecdb] backdrop-blur-sm transition-all duration-300 hover:border-[#e8b547]/70 hover:bg-white/15"
             >
               Conhecer a pousada

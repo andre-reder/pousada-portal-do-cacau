@@ -1,0 +1,144 @@
+---
+import { SITE_CONFIG } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  imageUrl?: string;
+}
+
+const {
+  title = SITE_CONFIG.title,
+  description = SITE_CONFIG.description,
+  canonicalUrl = SITE_CONFIG.url,
+  imageUrl = `${SITE_CONFIG.url}/assets/logo/image.png`,
+} = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}`,
+      "url": `${canonicalUrl}`,
+      "name": title,
+      "isPartOf": {
+        "@id": `${SITE_CONFIG.url}/#website`,
+      },
+      "about": {
+        "@id": `${SITE_CONFIG.url}/#organization`,
+      },
+      "description": description,
+      "breadcrumb": {
+        "@id": `${canonicalUrl}/#breadcrumb`,
+      },
+      "inLanguage": "pt-BR",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [`${canonicalUrl}`],
+        },
+      ],
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalUrl}/#breadcrumb`,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+        },
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_CONFIG.url}/#website`,
+      "url": `${SITE_CONFIG.url}/`,
+      "name": SITE_CONFIG.name,
+      "description": "São Sebastião/SP",
+      "publisher": {
+        "@id": `${SITE_CONFIG.url}/#organization`,
+      },
+      "inLanguage": "pt-BR",
+    },
+    {
+      "@type": "LodgingBusiness",
+      "@id": `${SITE_CONFIG.url}/#organization`,
+      "name": SITE_CONFIG.name,
+      "alternateName": "Pousada Portal do Cacau Petfriendly",
+      "url": `${SITE_CONFIG.url}/`,
+      "logo": {
+        "@type": "ImageObject",
+        "inLanguage": "pt-BR",
+        "@id": `${SITE_CONFIG.url}/#schema/logo/image/`,
+        "url": imageUrl,
+        "contentUrl": imageUrl,
+        "caption": SITE_CONFIG.name,
+      },
+      "image": imageUrl,
+      "telephone": SITE_CONFIG.contact.phoneIntl,
+      "email": SITE_CONFIG.contact.email,
+      "priceRange": "$$$",
+      "petsAllowed": true,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": SITE_CONFIG.contact.address.street,
+        "addressLocality": SITE_CONFIG.contact.address.city,
+        "addressRegion": SITE_CONFIG.contact.address.state,
+        "postalCode": SITE_CONFIG.contact.address.postalCode,
+        "addressCountry": SITE_CONFIG.contact.address.country,
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": SITE_CONFIG.contact.address.geo.latitude,
+        "longitude": SITE_CONFIG.contact.address.geo.longitude,
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Piscina exclusiva para pets",
+          "value": true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Quadra de Beach Tennis",
+          "value": true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Café da manhã incluso",
+          "value": true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Sauna e Área de Bem-estar",
+          "value": true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Wi-Fi gratuito",
+          "value": true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Estacionamento",
+          "value": true,
+        },
+      ],
+      "sameAs": [
+        SITE_CONFIG.social.facebook,
+        SITE_CONFIG.social.instagram,
+        SITE_CONFIG.social.tripadvisor,
+      ],
+    },
+  ],
+};
+---
+
+<script
+  type="application/ld+json"
+  class="schema-graph"
+  set:html={JSON.stringify(schemaData)}
+/>

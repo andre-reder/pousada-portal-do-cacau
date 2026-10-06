@@ -9,26 +9,25 @@ import { useEffect, useState } from "react";
 import logoUrl from "../../assets/logo/image.png";
 import BookingForm from "./BookingForm";
 import { cn, CONTACT } from "./cn";
-
-const BASE = import.meta.env.BASE_URL;
+import { pathWithBase } from "@/utils/base";
 
 const LINKS = [
-  { href: `${BASE}#acomodacoes`, label: "Acomodações" },
-  { href: `${BASE}#comodidades`, label: "Comodidades" },
-  { href: `${BASE}#pets`, label: "Pets" },
-  { href: `${BASE}#ecoturismo`, label: "Ecoturismo" },
-  { href: `${BASE}#eventos`, label: "Eventos" },
-  { href: `${BASE}#avaliacoes`, label: "Avaliações" },
-  { href: `${BASE}#faq`, label: "FAQ" },
-  { href: `${BASE}#contato`, label: "Contato" },
+  { href: pathWithBase("#acomodacoes"), label: "Acomodações" },
+  { href: pathWithBase("#comodidades"), label: "Comodidades" },
+  { href: pathWithBase("#pets"), label: "Pets" },
+  { href: pathWithBase("#ecoturismo"), label: "Ecoturismo" },
+  { href: pathWithBase("#eventos"), label: "Eventos" },
+  { href: pathWithBase("#avaliacoes"), label: "Avaliações" },
+  { href: pathWithBase("#faq"), label: "FAQ" },
+  { href: pathWithBase("#contato"), label: "Contato" },
 ];
 
 const MORE_LINKS = [
-  { href: `${BASE}/blog`, label: "Blog" },
-  { href: `${BASE}/sustentabilidade`, label: "Sustentabilidade" },
-  { href: `${BASE}/parceiros`, label: "Parceiros" },
-  { href: `${BASE}/beach-tennis`, label: "Beach Tennis" },
-  { href: `${BASE}/privacidade`, label: "Privacidade" },
+  { href: pathWithBase("/blog"), label: "Blog" },
+  { href: pathWithBase("/sustentabilidade"), label: "Sustentabilidade" },
+  { href: pathWithBase("/parceiros"), label: "Parceiros" },
+  { href: pathWithBase("/beach-tennis"), label: "Beach Tennis" },
+  { href: pathWithBase("/privacidade"), label: "Privacidade" },
 ];
 
 export default function Navbar() {
@@ -106,7 +105,7 @@ export default function Navbar() {
         <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo */}
           <a
-            href={`${BASE}`}
+            href={pathWithBase("/")}
             className="group flex items-center gap-2.5"
             aria-label="Pousada Portal do Cacau — início"
           >

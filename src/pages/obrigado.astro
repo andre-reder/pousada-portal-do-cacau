@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.tsx';
+import Footer from '../components/Footer.tsx';
+import SmoothScroll from '../components/SmoothScroll.tsx';
+import Cursor from '../components/Cursor.tsx';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<Layout
+  title="Mensagem Enviada com Sucesso | Pousada Portal do Cacau"
+  description="Obrigado pelo seu contato! Nossa equipe responderá sua solicitação de reserva em breve."
+  noindex={true}
+>
+  <SmoothScroll client:load />
+  <Cursor client:load />
+  <Navbar client:load />
+
+  <main class="min-h-screen bg-[#14271f] text-[#f3ecdb] pt-32 pb-20 px-6 sm:px-10 flex flex-col items-center justify-center relative overflow-hidden">
+    <!-- Efeitos de iluminação de fundo -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#e8b547]/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto text-center">
+      <!-- Ícone de Sucesso -->
+      <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#e8b547]/20 border border-[#e8b547]/40 text-[#e8b547]">
+        <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#e8b547] mb-3">
+        Solicitação Recebida
+      </p>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] mb-6" style="font-family: var(--font-display); letter-spacing: -0.03em;">
+        Obrigado pelo seu contato!
+      </h1>
+
+      <p class="text-lg sm:text-xl text-[#f3ecdb]/80 font-light leading-relaxed mb-10 max-w-xl mx-auto">
+        Recebemos sua mensagem com sucesso. Nossa equipe da Pousada Portal do Cacau retornará com os detalhes da sua reserva o mais rápido possível.
+      </p>
+
+      <div class="p-6 sm:p-8 rounded-2xl bg-[#1d352b]/60 border border-[#e8b547]/20 mb-10 text-left">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-[#e8b547] mb-3">
+          Precisa de confirmação imediata?
+        </h3>
+        <p class="text-sm text-[#f3ecdb]/75 mb-6">
+          Se você tem planos para os próximos dias ou prefere atendimento em tempo real, fale agora mesmo diretamente com a nossa recepção via WhatsApp:
+        </p>
+        <a
+          href={SITE_CONFIG.contact.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-4 text-sm font-semibold text-white shadow-lg transition-all hover:bg-[#20ba5a] hover:scale-[1.02]"
+        >
+          <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/>
+          </svg>
+          Falar no WhatsApp Agora
+        </a>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sm text-[#f3ecdb]/70 hover:text-[#f3ecdb] transition-colors"
+        >
+          ← Voltar para a página inicial
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer client:load />
+
+  <!-- DISPARO DE EVENTOS DE CONVERSÃO DE ANÚNCIOS (LEAD) -->
+  <script is:inline>
+    // Dispara a conversão de LEAD assim que a página de obrigado for visualizada
+    window.addEventListener('DOMContentLoaded', function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Reserva Solicitação Confirmada',
+          status: true
+        });
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          event_category: 'engagement',
+          event_label: 'formulario_obrigado',
+          value: 1
+        });
+        gtag('event', 'conversion', {
+          send_to: 'default'
+        });
+      }
+    });
+  </script>
+</Layout>

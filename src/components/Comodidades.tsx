@@ -14,6 +14,7 @@ import {
     Wifi,
     Wine,
 } from "lucide-react";
+import { pathWithBase } from "@/utils/base";
 
 type Category =
   | "Gastronomia"
@@ -265,7 +266,7 @@ export default function Comodidades({ categorized = false }: { categorized?: boo
             pet, a qualquer hora do dia ou da noite.
           </p>
           <a
-            href={`${import.meta.env.BASE_URL}/comodidades`}
+            href={pathWithBase("/comodidades")}
             data-cursor="cta"
             className="shrink-0 rounded-full bg-[#1f3a2e] px-5 py-2.5 text-[0.8rem] font-semibold text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
           >

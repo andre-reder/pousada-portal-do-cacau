@@ -1,25 +1,24 @@
 import { Camera, Clock, Globe, Mail, MapPin, MessageCircle } from "lucide-react";
 import logoUrl from "../../assets/logo/image.png";
 import { CONTACT } from "./cn";
-
-const BASE = import.meta.env.BASE_URL;
+import { pathWithBase } from "@/utils/base";
 
 const NAV_EXPLORE = [
-  { href: `${BASE}#acomodacoes`, label: "Acomodações" },
-  { href: `${BASE}#comodidades`, label: "Comodidades" },
-  { href: `${BASE}#pets`, label: "Pet Friendly" },
-  { href: `${BASE}#ecoturismo`, label: "Ecoturismo" },
-  { href: `${BASE}#eventos`, label: "Eventos" },
-  { href: `${BASE}/beach-tennis`, label: "Beach Tennis" },
+  { href: pathWithBase("#acomodacoes"), label: "Acomodações" },
+  { href: pathWithBase("#comodidades"), label: "Comodidades" },
+  { href: pathWithBase("#pets"), label: "Pet Friendly" },
+  { href: pathWithBase("#ecoturismo"), label: "Ecoturismo" },
+  { href: pathWithBase("#eventos"), label: "Eventos" },
+  { href: pathWithBase("/beach-tennis"), label: "Beach Tennis" },
 ];
 
 const NAV_INFO = [
-  { href: `${BASE}/sustentabilidade`, label: "Sustentabilidade" },
-  { href: `${BASE}/parceiros`, label: "Parceiros" },
-  { href: `${BASE}/blog`, label: "Blog" },
-  { href: `${BASE}/faq`, label: "FAQ" },
-  { href: `${BASE}/privacidade`, label: "Privacidade" },
-  { href: `${BASE}#contato`, label: "Contato" },
+  { href: pathWithBase("/sustentabilidade"), label: "Sustentabilidade" },
+  { href: pathWithBase("/parceiros"), label: "Parceiros" },
+  { href: pathWithBase("/blog"), label: "Blog" },
+  { href: pathWithBase("/faq"), label: "FAQ" },
+  { href: pathWithBase("/privacidade"), label: "Privacidade" },
+  { href: pathWithBase("#contato"), label: "Contato" },
 ];
 
 export default function Footer() {

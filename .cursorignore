@@ -1,0 +1,5 @@
+# Allow Cursor AI to index and read skills even if ignored by git
+!skills/
+!skills/**
+!.agents/
+!.agents/**

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import CTAFinal from "../../components/CTAFinal.tsx";
 import SectionLayout from "../../layouts/SectionLayout.astro";
+import { getBase } from "@/utils/base";
 import { withBase } from "@/utils/withBase";
 
 const posts = await getCollection("blog");
@@ -37,7 +38,7 @@ function readingTime(body?: string) {
   return Math.max(1, Math.round(wc / 200));
 }
 
-const base = import.meta.env.BASE_URL;
+const base = getBase();
 ---
 
 <SectionLayout
