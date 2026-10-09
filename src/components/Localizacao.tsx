@@ -11,9 +11,10 @@ import {
     Star,
 } from "lucide-react";
 import { CONTACT } from "./cn";
+import regiaoImg from "../../assets/image.webp";
 
-const PEXELS_IMAGE =
-  "https://images.pexels.com/photos/1482784/pexels-photo-1482784.jpeg?auto=compress&cs=tinysrgb&h=650&w=940";
+const regiaoSrc =
+  typeof regiaoImg === "string" ? regiaoImg : (regiaoImg as { src: string }).src;
 
 export default function Localizacao() {
   return (
@@ -233,11 +234,11 @@ export default function Localizacao() {
               </div>
             </div>
 
-            {/* Regional atmosphere image with attribution */}
+            {/* Regional atmosphere image */}
             <figure className="relative overflow-hidden rounded-[var(--radius-card)] border border-[#d9cfb8] shadow-(--shadow-subtle)">
               <img
-                src={PEXELS_IMAGE}
-                alt="Atmosfera do estado de São Paulo — fotografia ilustrativa da região."
+                src={regiaoSrc}
+                alt="Sertão do Camburi — litoral paulista."
                 loading="lazy"
                 className="h-[180px] w-full object-cover sm:h-[200px]"
               />
@@ -251,14 +252,6 @@ export default function Localizacao() {
               />
               <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-3 px-4 py-3 text-[0.7rem] text-[#f3ecdb]/85">
                 <span>Imagem ilustrativa da região · litoral paulista</span>
-                <a
-                  href="https://www.pexels.com/@bertellifotografia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-[#e8b547] transition-colors hover:text-[#f3ecdb]"
-                >
-                  Foto: Matheus Bertelli / Pexels
-                </a>
               </figcaption>
             </figure>
           </motion.div>
