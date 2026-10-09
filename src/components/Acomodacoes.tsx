@@ -38,7 +38,7 @@ const bangaloOriginalGlob = import.meta.glob<ImageMetadata>(
     { eager: true, import: "default" },
 );
 const bangaloPlusGlob = import.meta.glob<ImageMetadata>(
-    "../../assets/bangalo-plus/*.png",
+    "../../assets/acomodacoes/bangalo-plus/*.{webp,png,PNG,jpg,jpeg}",
     { eager: true, import: "default" },
 );
 
