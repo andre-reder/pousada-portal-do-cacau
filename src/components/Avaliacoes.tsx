@@ -33,7 +33,7 @@ const REVIEWS: Review[] = [
     name: "Marcelo Bravo",
     stars: 5,
     tag: "Família",
-    text: "Uma pousada cheia de charme e conforto! O casal João e Andreia, junto com seu cãocierge Kisuco, nos recebeu como se fôssemos da família. Feriado maravilhoso com passeio na cachoeira do Sertão de Camburi, jantar com música ao vivo e muita alegria. Minha filha de 15 anos amou e saiu de lá já me pedindo pra voltar.",
+    text: "Uma pousada cheia de charme e conforto! O casal João e Andreia, junto com seu cãocierge Kisuco, nos recebeu como se fôssemos da família. Feriado maravilhoso com passeio na cachoeira do Sertão de Camburi, drinks com música boa e muita alegria. Minha filha de 15 anos amou e saiu de lá já me pedindo pra voltar.",
   },
   {
     name: "Paola A.",

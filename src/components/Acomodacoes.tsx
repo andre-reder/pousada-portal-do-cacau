@@ -26,11 +26,11 @@ import { pathWithBase } from "@/utils/base";
 /* not a plain URL string — so we extract .src in toGallery.           */
 /* ------------------------------------------------------------------ */
 const suitePlusGlob = import.meta.glob<ImageMetadata>(
-    "../../assets/suite-plus/*.png",
+    "../../assets/acomodacoes/suite-plus/*.{webp,png,PNG,jpg,jpeg}",
     { eager: true, import: "default" },
 );
 const suiteOriginalGlob = import.meta.glob<ImageMetadata>(
-    "../../assets/suite-original/*.png",
+    "../../assets/acomodacoes/suite/*.{webp,png,PNG,jpg,jpeg}",
     { eager: true, import: "default" },
 );
 const bangaloOriginalGlob = import.meta.glob<ImageMetadata>(
@@ -78,12 +78,12 @@ const STAYS: Stay[] = [
     type: "Suíte",
     tagline: "Aconchego essencial",
     description:
-      'Ar condicionado, ventilador de teto, TV 32" LCD, Wi-Fi em toda a estrutura e apartamentos, chuveiro com aquecimento central a gás, frigobar, piso térreo e superior. Acomoda: 3. Tamanho: 26m². Camas: 1 cama de casal King Size, 1 cama de solteiro.',
+      'Ar condicionado, ventilador de teto, TV 32" LCD, Wi-Fi em toda a estrutura e apartamentos, estacionamento gratuito, chuveiro com aquecimento central a gás, frigobar, piso térreo e superior. Acomoda: 3. Tamanho: 26m². Camas: 1 cama de casal King Size, 1 cama de solteiro.',
     amenities: [
       { icon: Snowflake, label: "Ar-condicionado" },
       { icon: Wind, label: "Ventilador de teto" },
       { icon: Tv, label: 'TV 32" LCD' },
-      { icon: Wifi, label: "Wi-Fi" },
+      { icon: Wifi, label: "Wi-Fi e Estacionamento" },
       { icon: DoorOpen, label: "Frigobar" },
     ],
     accommodates: "3 hóspedes",
@@ -97,12 +97,12 @@ const STAYS: Stay[] = [
     type: "Suíte",
     tagline: "Conforto elevado",
     description:
-      'Ar condicionado split, ventilador de teto, TV 42" LCD, Wi-Fi em toda a estrutura e apartamentos, chuveiro com aquecimento central a gás, frigobar, piso superior. Acomoda: 2. Tamanho: 26m². Cama: 1 cama de casal King Size.',
+      'Ar condicionado split, ventilador de teto, TV 42" LCD, Wi-Fi em toda a estrutura e apartamentos, estacionamento gratuito, chuveiro com aquecimento central a gás, frigobar, piso superior. Acomoda: 2. Tamanho: 26m². Cama: 1 cama de casal King Size.',
     amenities: [
       { icon: Snowflake, label: "Ar split" },
       { icon: Wind, label: "Ventilador de teto" },
       { icon: Tv, label: 'TV 42" LCD' },
-      { icon: Wifi, label: "Wi-Fi" },
+      { icon: Wifi, label: "Wi-Fi e Estacionamento" },
       { icon: DoorOpen, label: "Frigobar" },
     ],
     accommodates: "2 hóspedes",
@@ -117,11 +117,11 @@ const STAYS: Stay[] = [
     type: "Bangalô",
     tagline: "Sua casa na mata",
     description:
-      "Ar-condicionado, varanda à entrada com duas cadeiras de balanço, sala com 1 sofá bi-cama, TV 32 polegadas, Wi-Fi, ventiladores de teto, cozinha equipada com geladeira de uma porta e utensílios básicos, varanda ampla com churrasqueira individual, mesa e cadeiras, dormitório de casal com uma cama, varanda com rede. Acomoda: até 4. Tamanho: 72m² - Duplex. Camas: 1 sofá bi-cama, 1 cama de casal.",
+      "Ar-condicionado, varanda à entrada com duas cadeiras de balanço, sala com 1 sofá bi-cama, TV 32 polegadas, Wi-Fi, estacionamento gratuito, ventiladores de teto, cozinha equipada com geladeira de uma porta e utensílios básicos, varanda ampla com churrasqueira individual, mesa e cadeiras, dormitório de casal com uma cama, varanda com rede. Acomoda: até 4. Tamanho: 72m² - Duplex. Camas: 1 sofá bi-cama, 1 cama de casal.",
     amenities: [
       { icon: Snowflake, label: "Ar-condicionado" },
       { icon: Tv, label: 'TV 32"' },
-      { icon: Wifi, label: "Wi-Fi" },
+      { icon: Wifi, label: "Wi-Fi e Estacionamento" },
       { icon: UtensilsCrossed, label: "Cozinha equipada" },
       { icon: DoorOpen, label: "Varanda ampla" },
     ],
@@ -136,11 +136,11 @@ const STAYS: Stay[] = [
     type: "Bangalô",
     tagline: "Espaço e independência",
     description:
-      "Ar-condicionado, varanda à entrada com duas cadeiras de balanço, sala com 1 sofá bi-cama, TV com sinal SKY, Wi-Fi, ventiladores de teto, ar condicionado no quarto do casal, cozinha equipada com geladeira de uma porta e utensílios básicos, varanda ampla com churrasqueira individual, mesa e cadeiras, dormitório de casal com uma cama de casal, varanda com rede. Acomoda: até 4. Tamanho: 72m² - Duplex. Camas: 1 sofá bi-cama, 1 cama de casal.",
+      "Ar-condicionado, varanda à entrada com duas cadeiras de balanço, sala com 1 sofá bi-cama, TV com sinal SKY, Wi-Fi, estacionamento gratuito, ventiladores de teto, ar condicionado no quarto do casal, cozinha equipada com geladeira de uma porta e utensílios básicos, varanda ampla com churrasqueira individual, mesa e cadeiras, dormitório de casal com uma cama de casal, varanda com rede. Acomoda: até 4. Tamanho: 72m² - Duplex. Camas: 1 sofá bi-cama, 1 cama de casal.",
     amenities: [
       { icon: Snowflake, label: "Ar no quarto" },
       { icon: Tv, label: "TV SKY" },
-      { icon: Wifi, label: "Wi-Fi" },
+      { icon: Wifi, label: "Wi-Fi e Estacionamento" },
       { icon: UtensilsCrossed, label: "Cozinha equipada" },
       { icon: DoorOpen, label: "Varanda com balanço" },
     ],

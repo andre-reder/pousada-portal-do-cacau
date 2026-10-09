@@ -1,5 +1,5 @@
 ---
-import { Bath, Check, Clock, Coffee, Dumbbell, Flame, PawPrint, Sparkles, Waves } from "lucide-react";
+import { Bath, Check, Clock, Coffee, Droplets, Dumbbell, Flame, PawPrint, Sparkles, Waves } from "lucide-react";
 import Comodidades from "../components/Comodidades.tsx";
 import CTAFinal from "../components/CTAFinal.tsx";
 import RelatedNav from "../components/RelatedNav.astro";
@@ -8,18 +8,17 @@ import SectionLayout from "../layouts/SectionLayout.astro";
 const INCLUDED = [
   { icon: "Coffee", label: "Café da manhã (humanos e pets)" },
   { icon: "Waves", label: "Piscina semiolímpica" },
+  { icon: "Droplets", label: "Banho de cachoeira para humanos (Cachoeira de Cambury)" },
   { icon: "Dumbbell", label: "Arena Beach Tennis (hóspedes)" },
-  { icon: "Sparkles", label: "Wi-Fi em toda a pousada" },
+  { icon: "Sparkles", label: "Wi-Fi e Estacionamento gratuito" },
   { icon: "PawPrint", label: "Piscina 10m, Bosque Play Pet" },
-  { icon: "Clock", label: "Estacionamento gratuito" },
 ];
 
 const EXTRA = [
   { icon: "Flame", label: "Sauna seca", hint: "Sessões agendadas na recepção" },
-  { icon: "Bath", label: "Hidromassagem aquecida", hint: "Uso agendado" },
   { icon: "Bath", label: "Espaço de banho SPA'PET", hint: "Splash Dog (profissional) à parte" },
   { icon: "Dumbbell", label: "Aulas de beach tennis", hint: "Coach Robinho — agendamento à parte" },
-  { icon: "Coffee", label: "Lounge & Bar", hint: "Drinques e petiscos consumidos à parte" },
+  { icon: "Coffee", label: "Lounge & Bar", hint: "Drinks especiais e boa música" },
 ];
 ---
 
@@ -65,6 +64,7 @@ const EXTRA = [
                 <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#3d5d49]/15 text-[#3d5d49]">
                   {it.icon === "Coffee" && <Coffee size={15} />}
                   {it.icon === "Waves" && <Waves size={15} />}
+                  {it.icon === "Droplets" && <Droplets size={15} />}
                   {it.icon === "Dumbbell" && <Dumbbell size={15} />}
                   {it.icon === "Sparkles" && <Sparkles size={15} />}
                   {it.icon === "PawPrint" && <PawPrint size={15} />}

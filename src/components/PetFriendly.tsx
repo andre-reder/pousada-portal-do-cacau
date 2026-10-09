@@ -87,7 +87,7 @@ const PET_POLICIES: {
     title: "Regras de convivência, alimentação e higiene",
     text: "",
     items: [
-      "Fora da acomodação o pet é bem-vindo em toda área comum, exceto a parte interna do restaurante (mas bem-vindo na parte externa).",
+      "Fora da acomodação o pet é bem-vindo em toda área comum — no café da manhã, é super bem-vindo na varanda e mesas externas.",
       "O pet pode ficar solto pela pousada, desde que o tutor esteja ao seu lado (área de mata, risco de animais peçonhentos).",
       "O tutor é responsável pelo acompanhamento, alimentação e recolhimento dos dejetos.",
       "A limpeza na acomodação com pet é obrigatoriamente diária — agende um horário entre 11h e 14h na recepção, e se ausente do quarto com o pet.",

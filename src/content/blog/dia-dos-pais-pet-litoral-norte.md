@@ -20,7 +20,7 @@ O Sertão do Camburi, em São Sebastião, oferece o equilíbrio ideal: Mata Atl�
 - **Trilha até a Cachoeira do Sertão do Camburi** — nível fácil, ideal para todos
 - **Tarde na piscina** — uma para humanos e outra exclusiva para pets
 - **Beach tennis** na arena iluminada da pousada
-- **Jantar no lounge bar** com o pet na parte externa
+- **Drinks e boa música no lounge bar** ao entardecer com o pet na parte externa
 
 ## Dicas para o feriado
 

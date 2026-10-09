@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import {
     Bath,
     Coffee,
+    Droplets,
     Dumbbell,
     Flame,
     ParkingCircle,
@@ -58,7 +59,7 @@ const AMENITIES: Amenity[] = [
   {
     icon: Wine,
     title: "Espaço Lounge & Bar",
-    text: "Um barzinho com cara de praia dentro da pousada — drinques, petiscos e música ao vivo em noites selecionadas.",
+    text: "Um bar com cara de praia dentro da pousada — drinks especiais, ambiente agradável e boa música para relaxar.",
     category: "Gastronomia",
   },
   {
@@ -80,9 +81,9 @@ const AMENITIES: Amenity[] = [
     category: "Lazer & bem-estar",
   },
   {
-    icon: Bath,
-    title: "Hidromassagem aquecida",
-    text: "Hidromassagem com água aquecida para relaxar em qualquer estação.",
+    icon: Droplets,
+    title: "Banho de cachoeira para humanos",
+    text: "Banho revigorante na Cachoeira de Cambury para os humanos se refrescarem e se reconectarem com as águas cristalinas da Mata Atlântica.",
     category: "Lazer & bem-estar",
   },
   {
@@ -130,14 +131,14 @@ const AMENITIES: Amenity[] = [
   },
   {
     icon: Wifi,
-    title: "Wi-Fi (áreas comuns e acomodações)",
-    text: "Internet gratuita em toda a estrutura da pousada — áreas comuns e apartamentos.",
+    title: "Wi-Fi e Estacionamento gratuito",
+    text: "Internet gratuita em toda a estrutura da pousada (áreas comuns e acomodações) e estacionamento privativo gratuito para os hóspedes.",
     category: "Conveniência",
   },
   {
     icon: ParkingCircle,
-    title: "Estacionamento",
-    text: "Estacionamento gratuito para os hóspedes.",
+    title: "Estacionamento privativo",
+    text: "Vagas privativas e seguras dentro da pousada para você deixar o carro com tranquilidade durante toda a estadia.",
     category: "Conveniência",
   },
 ];
