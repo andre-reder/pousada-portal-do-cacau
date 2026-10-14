@@ -1,85 +1,264 @@
 ---
-import SectionLayout from "../layouts/SectionLayout.astro";
+import { Award, Check, Clock, Dumbbell, Flame, HelpCircle, Moon, Sparkles, Sun, Trophy, Users, Zap } from "lucide-react";
+import BeachTennisGallery from "../components/BeachTennisGallery.tsx";
 import CTAFinal from "../components/CTAFinal.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+// Imagem aérea panorâmica para o Hero da página
+import heroImg from "../../assets/beach-tennis/IMG_3939.JPG";
+// Foto do Coach Robinho para o card de aulas
+import coachImg from "../../assets/beach-tennis/IMG_3942.JPG";
+
+const FAQ_ARENA = [
+  {
+    q: "Hóspedes pagam para usar a quadra?",
+    a: "Não! O uso da arena de beach tennis é 100% gratuito e ilimitado para os hóspedes durante toda a estadia.",
+  },
+  {
+    q: "Preciso levar minhas próprias raquetes e bolinhas?",
+    a: "Não precisa se preocupar: fornecemos raquetes e bolinhas de beach tennis de cortesia na recepção da pousada.",
+  },
+  {
+    q: "A quadra possui iluminação noturna?",
+    a: "Sim! A arena conta com iluminação noturna especial em refletores para que você possa jogar no frescor da noite após o pôr do sol.",
+  },
+  {
+    q: "Como funcionam as aulas com o Coach Robinho?",
+    a: "O Coach Robinho ministra aulas particulares ou em pequenos grupos para todos os níveis — do iniciante absoluto ao avançado. O agendamento é feito diretamente na recepção ou pelo WhatsApp da pousada.",
+  },
+  {
+    q: "Visitantes externos ou não-hóspedes podem utilizar a quadra?",
+    a: "Sim, mediante disponibilidade de horários e consulta prévia de valores e agendamento na recepção.",
+  },
+];
 ---
 
 <SectionLayout
   title="Beach Tennis"
-  eyebrow="Arena oficial"
-  description="Quadra 20×11m com iluminação noturna, raquetes e bolinhas fornecidas. Hóspedes utilizam sem custo. Aulas com o coach Robinho mediante agendamento."
+  eyebrow="Arena Oficial · Pousada Portal do Cacau"
+  description="Quadra oficial 20×11m com areia tratada, iluminação noturna, raquetes e bolinhas fornecidas. Hóspedes jogam de graça. Aulas com o Coach Robinho no Sertão do Camburi."
+  heroImage={heroImg.src}
 >
-  <section class="bg-[#f3ecdb] px-6 py-20 sm:px-10 sm:py-28">
-    <div class="mx-auto max-w-4xl">
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-8">
-          <h3
-            class="mb-4 text-2xl text-[#14271f]"
-            style="font-family: var(--font-display);"
-          >
-            A quadra
-          </h3>
-          <ul class="space-y-3 text-[0.9rem] leading-relaxed text-[#4a4030]">
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Dimensões oficiais: 20m × 11m</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Iluminação noturna para jogos à noite</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Areia própria para beach tennis</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Raquetes e bolinhas disponíveis para hóspedes</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Acesso gratuito para hóspedes da pousada</span>
-            </li>
-          </ul>
+  {/* Visão Geral da Arena & Aulas com Coach Robinho */}
+  <section class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 sm:mb-16">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="field-no text-2xl text-[#9c4d1c]">01</span>
+          <span class="eyebrow text-[#9c4d1c]">Estrutura & Treinamento</span>
+        </div>
+        <h2
+          class="max-w-3xl font-display text-[2.2rem] leading-[1.05] text-[#14271f] sm:text-[3rem] lg:text-[3.4rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          A única pousada de Camburi com
+          <span class="italic text-[#e07a3c]"> arena oficial de areia.</span>
+        </h2>
+        <p class="mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-[#4a4030]">
+          Seja para uma partida descontraída entre amigos ou para aperfeiçoar sua técnica com o Coach Robinho, nossa arena foi projetada com medidas regulamentares e piso de areia tratada no meio da Mata Atlântica.
+        </p>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-12">
+        {/* Card A Quadra */}
+        <div class="rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-[#f3ecdb] p-8 lg:col-span-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="mb-6 flex items-center justify-between">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1f3a2e] text-[#e8b547]">
+                <Dumbbell size={24} strokeWidth={1.8} />
+              </span>
+              <span class="rounded-full bg-[#1f3a2e]/10 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wider text-[#1f3a2e]">
+                20m × 11m
+              </span>
+            </div>
+
+            <h3
+              class="mb-3 text-2xl text-[#14271f]"
+              style="font-family: var(--font-display); font-weight: 400;"
+            >
+              A Quadra
+            </h3>
+            <p class="mb-6 text-[0.9rem] leading-relaxed text-[#4a4030]">
+              Construída seguindo as especificações oficiais para partidas individuais e de duplas, cercada pela vegetação nativa do litoral norte.
+            </p>
+
+            <ul class="space-y-3.5 text-[0.9rem] text-[#332a1c]">
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3d5d49] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Dimensões oficiais: <strong>20m de comprimento por 11m de largura</strong></span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3d5d49] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Areia limpa e fofa própria para amortecimento de saltos</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3d5d49] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Iluminação em refletores para jogar com tranquilidade à noite</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3d5d49] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Raquetes e bolinhas de beach tennis disponíveis sem taxa</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3d5d49] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Acesso 100% gratuito e irrestrito para hóspedes</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-[#d9cfb8]/60 flex items-center justify-between">
+            <span class="text-xs uppercase font-semibold tracking-wider text-[#6b5d45]">Equipamentos inclusos</span>
+            <span class="text-xs font-bold text-[#e07a3c]">Uso Livre</span>
+          </div>
         </div>
 
-        <div class="rounded-2xl border border-[#d9cfb8] bg-[#fbf6ea] p-8">
-          <h3
-            class="mb-4 text-2xl text-[#14271f]"
-            style="font-family: var(--font-display);"
-          >
-            Aulas com Robinho
-          </h3>
-          <p class="mb-4 text-[0.9rem] leading-relaxed text-[#4a4030]">
-            O coach Robinho oferece aulas para todos os níveis — do iniciante
-            ao avançado. Aulas individuais ou em grupo, com foco em técnica,
-            posicionamento e diversão.
-          </p>
-          <ul class="space-y-3 text-[0.9rem] leading-relaxed text-[#4a4030]">
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Aulas individuais e em grupo</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Todos os níveis: iniciante ao avançado</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-[#e07a3c]">●</span>
-              <span>Agendamento na recepção</span>
-            </li>
-          </ul>
+        {/* Card Aulas com Coach Robinho */}
+        <div class="rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-[#f3ecdb] p-8 lg:col-span-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="mb-6 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img
+                  src={coachImg.src}
+                  alt="Coach Robinho"
+                  class="h-14 w-14 rounded-full object-cover border-2 border-[#e07a3c] shadow-md"
+                />
+                <div>
+                  <h4 class="font-bold text-[#14271f] text-base leading-tight">Coach Robinho</h4>
+                  <p class="text-xs text-[#9c4d1c] font-semibold">Treinador & Atleta Oficial</p>
+                </div>
+              </div>
+              <span class="rounded-full bg-[#e07a3c]/15 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wider text-[#c25f28]">
+                Aulas Especiais
+              </span>
+            </div>
+
+            <h3
+              class="mb-3 text-2xl text-[#14271f]"
+              style="font-family: var(--font-display); font-weight: 400;"
+            >
+              Aulas com Robinho
+            </h3>
+            <p class="mb-6 text-[0.9rem] leading-relaxed text-[#4a4030]">
+              O Coach Robinho oferece metodologia dinâmica para quem quer ter o primeiro contato com a raquete ou aperfeiçoar saque, smash e posicionamento de quadra.
+            </p>
+
+            <ul class="space-y-3.5 text-[0.9rem] text-[#332a1c]">
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#e07a3c] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Aulas individuais personalizadas ou clínicas em grupo</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#e07a3c] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Do iniciante que nunca segurou raquete ao avançado</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#e07a3c] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Foco em técnica, deslocamento na areia e tática de jogo</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#e07a3c] text-white">
+                  <Check size={10} strokeWidth={3} />
+                </span>
+                <span>Agendamento flexível durante sua estadia</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-[#d9cfb8]/60 flex items-center justify-between">
+            <span class="text-xs uppercase font-semibold tracking-wider text-[#6b5d45]">Agendamento</span>
+            <span class="text-xs font-bold text-[#1f3a2e]">Recepção ou WhatsApp</span>
+          </div>
         </div>
       </div>
 
-      <div class="mt-8 rounded-2xl border border-[#e8b547]/40 bg-[#e8b547]/10 p-8 text-center">
-        <p class="text-[0.9rem] leading-relaxed text-[#4a4030]">
-          <span class="font-semibold text-[#14271f]">Hóspedes jogam grátis.</span>
-          {" "}Para visitantes externos e aulas com o coach, consulte valores na
-          recepção ou pelo WhatsApp.
-        </p>
+      {/* Banner Informativo */}
+      <div class="mt-8 rounded-2xl border border-[#e8b547]/50 bg-[#e8b547]/15 p-6 sm:p-8 text-center sm:text-left flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <div class="flex items-start gap-4">
+          <span class="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+            <Sparkles size={20} />
+          </span>
+          <div>
+            <p class="text-base font-semibold text-[#14271f]">
+              Hóspedes da pousada jogam sem custo adicional na diária.
+            </p>
+            <p class="mt-0.5 text-xs text-[#4a4030]">
+              Para aulas com o Coach Robinho ou locação para grupos externos, consulte condições na recepção.
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="#galeria"
+          class="shrink-0 rounded-full bg-[#1f3a2e] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
+        >
+          Ver fotos da quadra ↓
+        </a>
       </div>
     </div>
   </section>
+
+  {/* Galeria Fotográfica Completa com 7 Fotos Reais & Lightbox Interativo */}
+  <BeachTennisGallery client:load />
+
+  {/* Dúvidas Frequentes sobre a Arena */}
+  <section class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28 border-t border-[#d9cfb8]/60">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-12 sm:mb-16">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="field-no text-2xl text-[#9c4d1c]">03</span>
+          <span class="eyebrow text-[#9c4d1c]">Tire suas dúvidas</span>
+        </div>
+        <h2
+          class="font-display text-[2.2rem] leading-[1.05] text-[#14271f] sm:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Perguntas Frequentes
+          <span class="italic text-[#2c6e7f]"> sobre o Beach Tennis.</span>
+        </h2>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        {FAQ_ARENA.map((item, idx) => (
+          <div class="rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6 shadow-sm">
+            <h4 class="font-display text-lg text-[#14271f] mb-2" style="font-family: var(--font-display);">
+              {item.q}
+            </h4>
+            <p class="text-[0.88rem] leading-relaxed text-[#4a4030]">
+              {item.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Navegação de Páginas Relacionadas */}
+  <RelatedNav
+    title="Continue conhecendo a pousada"
+    items={[
+      { href: "/acomodacoes", label: "Acomodações", hint: "Suítes e bangalôs aconchegantes com café da manhã" },
+      { href: "/comodidades", label: "Estrutura & Lazer", hint: "Piscina semiolímpica, lounge bar, sauna e Wi-Fi" },
+      { href: "/pet-friendly", label: "Pet Friendly", hint: "Piscina exclusiva de 10m, café pet e Bosque Play" },
+      { href: "/ecoturismo", label: "Ecoturismo", hint: "Trilhas, cachoeiras e praias no Sertão do Camburi" },
+    ]}
+  />
 
   <CTAFinal client:load />
 </SectionLayout>

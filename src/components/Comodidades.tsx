@@ -14,8 +14,10 @@ import {
     Waves,
     Wifi,
     Wine,
+    ArrowRight,
 } from "lucide-react";
 import { pathWithBase } from "@/utils/base";
+import BeachTennisSpotlight from "./BeachTennisSpotlight.tsx";
 
 type Category =
   | "Gastronomia"
@@ -167,6 +169,15 @@ function AmenityCard({ a, i }: { a: Amenity; i: number }) {
       <p className="mt-2.5 text-[0.88rem] leading-relaxed text-[#4a4030]">
         {a.text}
       </p>
+      {a.title === "Arena Beach Tennis" && (
+        <a
+          href={pathWithBase("/beach-tennis#galeria")}
+          className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#9c4d1c] transition-colors hover:text-[#e07a3c]"
+        >
+          <span>Ver fotos reais da arena & Robinho</span>
+          <ArrowRight size={13} />
+        </a>
+      )}
     </motion.div>
   );
 }
@@ -250,6 +261,9 @@ export default function Comodidades({ categorized = false }: { categorized?: boo
             ))}
           </div>
         )}
+
+        {/* Atalho de Destaque para Arena de Beach Tennis e Galeria de Fotos */}
+        <BeachTennisSpotlight />
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}

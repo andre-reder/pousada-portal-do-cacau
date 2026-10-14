@@ -22,11 +22,11 @@ const LINKS = [
   { href: pathWithBase("#contato"), label: "Contato" },
 ];
 
-const MORE_LINKS = [
+const MORE_LINKS: { href: string; label: string; badge?: string }[] = [
+  { href: pathWithBase("/beach-tennis"), label: "Beach Tennis", badge: "Galeria" },
   { href: pathWithBase("/blog"), label: "Blog" },
   { href: pathWithBase("/sustentabilidade"), label: "Sustentabilidade" },
   { href: pathWithBase("/parceiros"), label: "Parceiros" },
-  { href: pathWithBase("/beach-tennis"), label: "Beach Tennis" },
   { href: pathWithBase("/privacidade"), label: "Privacidade" },
 ];
 
@@ -200,13 +200,18 @@ export default function Navbar() {
                           key={l.href}
                           href={l.href}
                           className={cn(
-                            "block px-4 py-2.5 text-[0.82rem] transition-colors",
+                            "flex items-center justify-between px-4 py-2.5 text-[0.82rem] transition-colors",
                             isActive
                               ? "bg-[#1f3a2e] text-[#e8b547]"
                               : "text-[#f3ecdb]/80 hover:bg-[#f3ecdb]/5 hover:text-[#f3ecdb]"
                           )}
                         >
-                          {l.label}
+                          <span>{l.label}</span>
+                          {l.badge && (
+                            <span className="rounded-full bg-[#e07a3c] px-2 py-0.5 text-[0.62rem] font-bold uppercase tracking-wider text-white">
+                              {l.badge}
+                            </span>
+                          )}
                         </a>
                       );
                     })}
@@ -372,7 +377,12 @@ export default function Navbar() {
                             : "text-[#f3ecdb]/75 hover:bg-[#f3ecdb]/5"
                         )}
                       >
-                        {l.label}
+                        <span>{l.label}</span>
+                        {l.badge && (
+                          <span className="rounded-full bg-[#e07a3c] px-2 py-0.5 text-[0.62rem] font-bold uppercase tracking-wider text-white">
+                            {l.badge}
+                          </span>
+                        )}
                       </a>
                     </li>
                   );
