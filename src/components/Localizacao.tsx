@@ -223,7 +223,7 @@ export default function Localizacao() {
                   Sertão do Camburi, São Sebastião — SP
                 </div>
                 <a
-                  href="https://maps.google.com/?q=Rua+Tijucas+895+Sertão+do+Camburi+São+Sebastião+SP"
+                  href="https://maps.google.com/?q=Avenida+Praias+do+Litoral+Norte+99+Sertão+do+Camburi+São+Sebastião+SP"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="cta"

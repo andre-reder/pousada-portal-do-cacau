@@ -14,11 +14,11 @@ export const SITE_CONFIG = {
       "https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20reservas%20na%20Pousada%20Portal%20do%20Cacau.",
     email: "reservas@portaldocacau.com.br",
     address: {
-      street: "Rua Tijucas, 895",
+      street: "Avenida Praias do Litoral Norte, 99",
       neighborhood: "Sertão do Camburi",
       city: "São Sebastião",
       state: "SP",
-      postalCode: "11619-100",
+      postalCode: "11619-115",
       country: "BR",
       geo: {
         latitude: -23.766674829868215,

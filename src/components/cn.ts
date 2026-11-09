@@ -13,9 +13,9 @@ export const CONTACT = {
   whatsappUrl:
     "https://api.whatsapp.com/send?1=pt_BR&phone=5512974108006&text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20reservas%20na%20Pousada%20Portal%20do%20Cacau.",
   email: "reservas@portaldocacau.com.br",
-  address: "Rua Tijucas, 895 — Sertão do Camburi",
+  address: "Avenida Praias do Litoral Norte, 99 — Sertão do Camburi",
   city: "São Sebastião — SP",
-  cep: "CEP 11200-000",
+  cep: "CEP 11619-115",
   reception: "Recepção 24 horas",
   instagram: "https://www.instagram.com/pousadaportaldocacau",
   facebook: "https://www.facebook.com/pousada.portaldocacau",
