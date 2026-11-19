@@ -23,6 +23,7 @@ const LINKS = [
 ];
 
 const MORE_LINKS: { href: string; label: string; badge?: string }[] = [
+  { href: pathWithBase("/cafe-da-manha"), label: "Café da Manhã", badge: "Destaque" },
   { href: pathWithBase("/beach-tennis"), label: "Beach Tennis", badge: "Galeria" },
   { href: pathWithBase("/blog"), label: "Blog" },
   { href: pathWithBase("/sustentabilidade"), label: "Sustentabilidade" },

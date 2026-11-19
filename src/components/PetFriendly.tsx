@@ -5,6 +5,7 @@ import {
     useTransform,
 } from "framer-motion";
 import {
+    ArrowRight,
     Bath,
     Cake,
     CircleDollarSign,
@@ -195,6 +196,15 @@ export default function PetFriendly() {
                 <p className="mt-2.5 text-[0.88rem] leading-relaxed text-[#f3ecdb]/70">
                   {f.text}
                 </p>
+                {f.title === "Café da manhã pet" && (
+                  <a
+                    href={pathWithBase("/cafe-da-manha#cafe-pet")}
+                    className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#e8b547] transition-colors hover:text-[#e07a3c]"
+                  >
+                    <span>Ver fotos e vídeos do café pet</span>
+                    <ArrowRight size={13} aria-hidden="true" />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

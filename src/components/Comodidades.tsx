@@ -54,7 +54,7 @@ const AMENITIES: Amenity[] = [
   {
     icon: Coffee,
     title: "Café da manhã",
-    text: "Nosso carro-chefe: waffles, panquecas, bolos com farinhas funcionais, frios, tapiocas e geleias caseiras feitas pela equipe. Atendemos intolerantes a lactose, glúten, vegetarianos e veganos — com ingredientes escolhidos a dedo para começar o dia com o pé direito.",
+    text: "Nosso carro-chefe com produção própria na pousada: cuscuz, waffles, panquecas, bolos com farinhas funcionais, frios, tapiocas e geleias caseiras feitas pela equipe. Atendemos intolerantes a lactose, glúten, vegetarianos e veganos — com ingredientes escolhidos a dedo e apresentação caprichada.",
     span: true,
     category: "Gastronomia",
   },
@@ -169,6 +169,24 @@ function AmenityCard({ a, i }: { a: Amenity; i: number }) {
       <p className="mt-2.5 text-[0.88rem] leading-relaxed text-[#4a4030]">
         {a.text}
       </p>
+      {a.title === "Café da manhã" && (
+        <a
+          href={pathWithBase("/cafe-da-manha")}
+          className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#9c4d1c] transition-colors hover:text-[#e07a3c]"
+        >
+          <span>Conhecer nosso café da manhã</span>
+          <ArrowRight size={13} />
+        </a>
+      )}
+      {a.title === "Café da manhã para pets" && (
+        <a
+          href={pathWithBase("/cafe-da-manha#cafe-pet")}
+          className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#9c4d1c] transition-colors hover:text-[#e07a3c]"
+        >
+          <span>Ver fotos e vídeos do café pet</span>
+          <ArrowRight size={13} />
+        </a>
+      )}
       {a.title === "Arena Beach Tennis" && (
         <a
           href={pathWithBase("/beach-tennis#galeria")}

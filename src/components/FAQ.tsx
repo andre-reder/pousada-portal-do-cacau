@@ -84,7 +84,7 @@ const FAQS: QA[] = [
   },
   {
     q: "O café da manhã está incluso?",
-    a: "Sim! Nossa diária inclui um delicioso café da manhã, com waffles, panquecas, bolos com farinhas funcionais, frios, tapiocas e geleias caseiras. Atendemos intolerantes a lactose, glúten, vegetarianos e veganos.",
+    a: "Sim! Nossa diária inclui um delicioso café da manhã de produção própria na pousada, com cuscuz, waffles, panquecas, bolos com farinhas funcionais, frios, tapiocas e geleias caseiras. Atendemos intolerantes a lactose, glúten, vegetarianos e veganos.",
     category: "Estadia & check-in",
   },
   {

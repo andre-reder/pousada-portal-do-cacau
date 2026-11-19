@@ -1,0 +1,439 @@
+---
+import {
+  ArrowRight,
+  Check,
+  ChefHat,
+  Clock,
+  Coffee,
+  Heart,
+  PawPrint,
+  Quote,
+  Sparkles,
+  Star,
+  Sun,
+  Utensils,
+  Wheat,
+} from "lucide-react";
+import CafeDaManhaGallery from "../components/CafeDaManhaGallery.tsx";
+import CTAFinal from "../components/CTAFinal.tsx";
+import RelatedNav from "../components/RelatedNav.astro";
+import SectionLayout from "../layouts/SectionLayout.astro";
+import { pathWithBase } from "@/utils/base";
+
+import buffetImg from "../../assets/breakfest/buffet-mesa-cafe-da-manha.webp";
+import cafePetImg from "../../assets/breakfest/cafe-pet-muffins-kisuco-golden.webp";
+import mesaCompartilhadaImg from "../../assets/breakfest/mesa-compartilhada-humanos-e-pets.webp";
+
+const QUICK_FACTS = [
+  { icon: "Clock", label: "Horário", value: "Das 8h às 10h" },
+  { icon: "Sparkles", label: "Tarifa", value: "Incluso na diária" },
+  { icon: "ChefHat", label: "Cozinha", value: "Produção 100% própria" },
+  { icon: "Sun", label: "Ambiente", value: "Salão pé na areia" },
+];
+
+const KITCHEN_NOTEBOOK = [
+  {
+    icon: "Utensils",
+    badge: "Preparo na hora",
+    title: "Cuscuz, Tapiocas & Pratos Quentes",
+    text: "Cuscuz fresquinho, tapiocas artesanais preparadas na hora (incluindo nossa tapioca colorida com crosta de queijo dourado e ovos mexidos), waffles e panquecas quentinhas.",
+  },
+  {
+    icon: "Wheat",
+    badge: "Nutritivo & Funcional",
+    title: "Bolos com Farinhas Funcionais",
+    text: "Bolos caseiros assados diariamente na pousada, pensados com farinhas funcionais para unir sabor de casa, leveza e nutrição de verdade.",
+  },
+  {
+    icon: "Coffee",
+    badge: "Apresentação caprichada",
+    title: "Geleias Caseiras, Frutas & Mesa Farta",
+    text: "Geleias artesanais feitas pela nossa equipe, frutas tropicais fatiadas na hora, banana grelhada, granola, pães fresquinhos, frios selecionados, café coado e sucos naturais.",
+  },
+  {
+    icon: "Heart",
+    badge: "Cuidado com cada hóspede",
+    title: "Atenção a Restrições Alimentares",
+    text: "Preparamos opções pensadas para intolerantes à lactose, intolerantes ao glúten, vegetarianos e veganos. Basta avisar nossa equipe na reserva ou no check-in.",
+  },
+];
+
+const PET_BENEFITS = [
+  "Biscoitinhos e muffins de abóbora 100% naturais feitos na cozinha da pousada",
+  "Receitas tão puras e cuidadosas que tutores e pets podem compartilhar",
+  "Incluso na diária para todos os pets hospedados na pousada",
+  "Mesa posta no salão pé na areia e na varanda externa junto da família",
+];
+
+const BREAKFAST_REVIEWS = [
+  {
+    name: "Natasha",
+    tag: "Hospedagem com pet",
+    text: "O café da manhã é excepcional, inclusive para os pets (minha cachorrinha não queria mais nada além do muffin). Para quem quer viajar com o pet, a pousada é um prato cheio.",
+  },
+  {
+    name: "João Paulo",
+    tag: "Casal com pet",
+    text: "O café da manhã tem um clima muito gostoso, com música de fundo. Os colaboradores e donos são muito gentis e fazem nos sentirmos em casa.",
+  },
+  {
+    name: "Caroline Moura",
+    tag: "Hospedagem com dog",
+    text: "Curti cada momento com meu dog, os funcionários são bem receptivos e preparados. Possui um café da manhã delicioso, e cada cantinho é acolhedor.",
+  },
+];
+
+const FAQ_BREAKFAST = [
+  {
+    q: "O café da manhã já está incluso na diária?",
+    a: "Sim! Tanto o café da manhã completo dos tutores quanto os biscoitinhos e muffins naturais preparados para os pets estão inclusos na diária.",
+  },
+  {
+    q: "Qual é o horário em que o café da manhã é servido?",
+    a: "Servimos diariamente das 8h às 10h no nosso salão pé na areia, em meio ao jardim e à Mata Atlântica.",
+  },
+  {
+    q: "Tudo é mesmo produzido na própria pousada?",
+    a: "Sim. Nosso café da manhã é preparado diariamente pela cozinha da pousada — de cuscuz, tapiocas, waffles e panquecas feitas na hora aos bolos com farinhas funcionais e geleias caseiras.",
+  },
+  {
+    q: "Vocês atendem quem tem restrições alimentares?",
+    a: "Sim. Preparamos opções para intolerantes à lactose, intolerantes ao glúten, vegetarianos e veganos. Avise nossa equipe no momento da reserva ou no check-in para prepararmos tudo com carinho.",
+  },
+  {
+    q: "O que é servido no café da manhã para os pets?",
+    a: "Preparamos biscoitinhos e muffins de abóbora 100% naturais, feitos sem ingredientes artificiais — tão cuidadosos que tanto os pets quanto os tutores podem saborear juntos.",
+  },
+  {
+    q: "Meu pet pode ficar comigo durante o café da manhã?",
+    a: "Sim! Os pets são super bem-vindos no salão pé na areia e nas mesas da varanda externa, sempre acompanhados pelo tutor.",
+  },
+];
+---
+
+<SectionLayout
+  title="Café da Manhã"
+  eyebrow="Carro-chefe da Pousada · Produção Própria"
+  description="Todo produzido na cozinha da pousada com ingredientes selecionados, farinhas funcionais e apresentação caprichada — incluindo café da manhã 100% natural para o seu pet. Servido das 8h às 10h, incluso na diária."
+  heroImage={buffetImg.src}
+  heroImagePosition="object-[center_60%]"
+>
+  {/* 01 — Produção Própria · O Nosso Maior Sucesso */}
+  <section class="bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 sm:mb-16">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="field-no text-2xl text-[#9c4d1c]">01</span>
+          <span class="eyebrow text-[#9c4d1c]">
+            Produção Própria · O Nosso Maior Sucesso
+          </span>
+        </div>
+        <h2
+          class="max-w-3xl font-display text-[2.2rem] leading-[1.05] text-[#14271f] sm:text-[3rem] lg:text-[3.4rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Feito na pousada, nutritivo e
+          <span class="italic text-[#9c4d1c]"> caprichado em cada detalhe.</span>
+        </h2>
+        <p class="mt-4 max-w-2xl text-[0.98rem] leading-relaxed text-[#4a4030]">
+          Quem se hospeda na Portal do Cacau sempre comenta: o café da manhã é
+          o nosso carro-chefe e faz o maior sucesso. Tudo nasce na cozinha da
+          pousada, com ingredientes escolhidos a dedo, cuidado nutricional com
+          farinhas funcionais, receitas caseiras e uma apresentação acolhedora no
+          nosso salão pé na areia.
+        </p>
+      </div>
+
+      {/* Faixa de 4 fatos rápidos */}
+      <div class="mb-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {QUICK_FACTS.map((fact) => (
+          <div class="flex items-center gap-3.5 rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-4 shadow-sm">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547]">
+              {fact.icon === "Clock" && <Clock size={18} aria-hidden="true" />}
+              {fact.icon === "Sparkles" && <Sparkles size={18} aria-hidden="true" />}
+              {fact.icon === "ChefHat" && <ChefHat size={18} aria-hidden="true" />}
+              {fact.icon === "Sun" && <Sun size={18} aria-hidden="true" />}
+            </span>
+            <div>
+              <span class="block text-xs font-semibold uppercase tracking-wider text-[#6b5d45]">
+                {fact.label}
+              </span>
+              <span class="mt-0.5 block text-sm font-bold text-[#14271f]">
+                {fact.value}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* 4 Cards — Caderno da Cozinha */}
+      <div class="grid gap-6 md:grid-cols-2 lg:gap-8">
+        {KITCHEN_NOTEBOOK.map((item) => (
+          <div class="flex flex-col justify-between rounded-[var(--radius-stage)] border border-[#d9cfb8] bg-[#f3ecdb] p-7 shadow-sm sm:p-8">
+            <div>
+              <div class="mb-5 flex items-center justify-between gap-3">
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1f3a2e] text-[#e8b547]">
+                  {item.icon === "Utensils" && <Utensils size={22} strokeWidth={1.8} aria-hidden="true" />}
+                  {item.icon === "Wheat" && <Wheat size={22} strokeWidth={1.8} aria-hidden="true" />}
+                  {item.icon === "Coffee" && <Coffee size={22} strokeWidth={1.8} aria-hidden="true" />}
+                  {item.icon === "Heart" && <Heart size={22} strokeWidth={1.8} aria-hidden="true" />}
+                </span>
+                <span class="rounded-full bg-[#1f3a2e]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#1f3a2e]">
+                  {item.badge}
+                </span>
+              </div>
+
+              <h3
+                class="mb-3 font-display text-2xl text-[#14271f]"
+                style="font-family: var(--font-display); font-weight: 400;"
+              >
+                {item.title}
+              </h3>
+              <p class="text-[0.94rem] leading-relaxed text-[#4a4030]">
+                {item.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Banner de chamada para a galeria */}
+      <div class="mt-10 flex flex-col items-center justify-between gap-5 rounded-2xl border border-[#e8b547]/50 bg-[#e8b547]/15 p-6 text-center sm:flex-row sm:p-8 sm:text-left">
+        <div class="flex items-start gap-4">
+          <span class="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1f3a2e] text-[#e8b547] sm:flex">
+            <Sparkles size={20} aria-hidden="true" />
+          </span>
+          <div>
+            <p class="text-base font-semibold text-[#14271f]">
+              Cada detalhe pensado para você começar o dia em Camburi sem pressa.
+            </p>
+            <p class="mt-0.5 text-sm text-[#4a4030]">
+              Confira abaixo os vídeos reais do salão e as fotos dos pratos e do café da manhã pet.
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="#galeria"
+          class="shrink-0 rounded-full bg-[#1f3a2e] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#f3ecdb] transition-colors hover:bg-[#e07a3c] hover:text-white"
+        >
+          Ver fotos e vídeos ↓
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* 02 — Café da Manhã Pet · Exclusivo para 4 Patas */}
+  <section
+    id="cafe-pet"
+    class="scroll-mt-24 bg-[#14271f] px-6 py-20 text-[#f3ecdb] sm:px-10 sm:py-28"
+  >
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+        {/* Esquerda — Conteúdo */}
+        <div class="lg:col-span-6">
+          <div class="mb-4 flex items-center gap-3">
+            <span class="field-no text-2xl" style="color: #e8b547;">02</span>
+            <span class="eyebrow text-[#e8b547]">
+              Hóspedes de 4 Patas · Incluso na diária
+            </span>
+          </div>
+
+          <h2
+            class="font-display text-[2.2rem] leading-[1.06] text-[#f3ecdb] sm:text-[3rem] lg:text-[3.4rem]"
+            style="font-family: var(--font-display); font-weight: 400; color: #f3ecdb;"
+          >
+            Até o seu pet tem
+            <span class="block italic text-[#e8b547]">
+              mesa posta de manhã.
+            </span>
+          </h2>
+
+          <p class="mt-5 text-[0.96rem] leading-relaxed text-[#f3ecdb]/90">
+            Aqui o seu companheiro não fica só olhando embaixo da mesa. Nossa
+            cozinha prepara biscoitinhos e muffins de abóbora 100% naturais para
+            os pets — receitas tão limpas e saudáveis que humanos e cães podem
+            comer juntos no salão pé na areia e nas mesas da varanda externa.
+          </p>
+
+          <ul class="mt-7 space-y-3.5 text-[0.94rem] text-[#f3ecdb]/90">
+            {PET_BENEFITS.map((benefit) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#e07a3c] text-white">
+                  <Check size={12} strokeWidth={3} aria-hidden="true" />
+                </span>
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-9 flex flex-col gap-3.5 sm:flex-row sm:flex-wrap sm:items-center">
+            <a
+              href="#galeria"
+              class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#e07a3c] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-[#c25f28]"
+            >
+              <PawPrint size={16} aria-hidden="true" />
+              <span>Ver fotos e vídeos do café pet</span>
+            </a>
+
+            <a
+              href={pathWithBase("/pet-friendly")}
+              class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#e8b547]/45 bg-white/5 px-6 py-3 text-sm font-semibold text-[#e8b547] transition-colors hover:bg-[#e8b547] hover:text-[#14271f]"
+            >
+              <span>Conhecer toda a estrutura Pet Friendly</span>
+              <ArrowRight
+                size={15}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+        </div>
+
+        {/* Direita — Composição Fotográfica */}
+        <div class="grid gap-5 sm:grid-cols-2 lg:col-span-6 lg:grid-cols-12 lg:items-end">
+          <figure class="overflow-hidden rounded-[var(--radius-stage)] border border-[#f3ecdb]/20 bg-[#1f3a2e] shadow-2xl lg:col-span-7">
+            <div class="relative aspect-[3/4]">
+              <img
+                src={cafePetImg.src}
+                alt="Cãocierge Kisuco e Golden Retriever diante do prato de muffins e bolinhos naturais pet"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-center"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-[#0c1812]/90 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+              <figcaption class="absolute inset-x-4 bottom-4 text-sm font-medium text-[#f3ecdb]">
+                Kisuco e hóspedes esperando os muffins naturais
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="overflow-hidden rounded-[var(--radius-card)] border border-[#f3ecdb]/20 bg-[#1f3a2e] shadow-xl lg:col-span-5">
+            <div class="relative aspect-[3/4]">
+              <img
+                src={mesaCompartilhadaImg.src}
+                alt="Mesa compartilhada com frutas, granola, café para tutores e prato de bolinhos naturais para os pets"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-center"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-[#0c1812]/90 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+              <figcaption class="absolute inset-x-4 bottom-4 text-sm font-medium text-[#f3ecdb]">
+                Mesa compartilhada entre tutores e pets
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 03 & 04 — Galeria Interativa de Vídeos & Fotos */}
+  <CafeDaManhaGallery client:load />
+
+  {/* 05 — O Que Dizem Nossos Hóspedes */}
+  <section class="bg-[#1f3a2e] px-6 py-20 text-[#f3ecdb] sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 sm:mb-14">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="field-no text-2xl" style="color: #e8b547;">05</span>
+          <span class="eyebrow text-[#e8b547]">
+            Avaliações Reais · Quem Já Experimentou
+          </span>
+        </div>
+        <h2
+          class="max-w-3xl font-display text-[2.2rem] leading-[1.05] text-[#f3ecdb] sm:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400; color: #f3ecdb;"
+        >
+          O que dizem nossos hóspedes
+          <span class="italic text-[#e8b547]"> sobre as manhãs por aqui.</span>
+        </h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {BREAKFAST_REVIEWS.map((review) => (
+          <figure class="flex flex-col justify-between rounded-[var(--radius-card)] border border-[#f3ecdb]/15 bg-[#14271f]/80 p-6 sm:p-7">
+            <div>
+              <div class="flex items-center justify-between">
+                <Quote size={24} className="text-[#e07a3c]" fill="currentColor" aria-hidden="true" />
+                <div class="flex gap-0.5" aria-label="5 de 5 estrelas">
+                  {[0, 1, 2, 3, 4].map(() => (
+                    <Star size={14} className="fill-[#e8b547] text-[#e8b547]" aria-hidden="true" />
+                  ))}
+                </div>
+              </div>
+              <blockquote class="mt-4 text-[0.92rem] leading-relaxed text-[#f3ecdb]/90">
+                “{review.text}”
+              </blockquote>
+            </div>
+
+            <figcaption class="mt-6 border-t border-[#f3ecdb]/15 pt-4">
+              <div
+                class="font-display text-lg text-[#f3ecdb]"
+                style="font-family: var(--font-display); font-weight: 400;"
+              >
+                {review.name}
+              </div>
+              <div class="mt-0.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#e8b547]">
+                {review.tag}
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 06 — Perguntas Frequentes sobre o Café da Manhã */}
+  <section class="border-t border-[#d9cfb8]/60 bg-[#fbf6ea] px-6 py-20 sm:px-10 sm:py-28">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-12 sm:mb-14">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="field-no text-2xl text-[#9c4d1c]">06</span>
+          <span class="eyebrow text-[#9c4d1c]">Tire suas dúvidas</span>
+        </div>
+        <h2
+          class="font-display text-[2.2rem] leading-[1.05] text-[#14271f] sm:text-[3rem]"
+          style="font-family: var(--font-display); font-weight: 400;"
+        >
+          Perguntas Frequentes
+          <span class="italic text-[#2c6e7f]"> sobre o café da manhã.</span>
+        </h2>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        {FAQ_BREAKFAST.map((item) => (
+          <div class="rounded-2xl border border-[#d9cfb8] bg-[#f3ecdb] p-6 shadow-sm">
+            <h3
+              class="mb-2 font-display text-lg text-[#14271f]"
+              style="font-family: var(--font-display); font-weight: 400;"
+            >
+              {item.q}
+            </h3>
+            <p class="text-[0.9rem] leading-relaxed text-[#4a4030]">
+              {item.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <RelatedNav
+    title="Continue conhecendo a pousada"
+    items={[
+      { href: "/acomodacoes", label: "Acomodações", hint: "Suítes e bangalôs aconchegantes com café da manhã" },
+      { href: "/pet-friendly", label: "Pet Friendly", hint: "Piscina exclusiva de 10m, café pet e Bosque Play" },
+      { href: "/comodidades", label: "Estrutura & Lazer", hint: "Piscina semiolímpica, lounge bar, sauna e Wi-Fi" },
+      { href: "/beach-tennis", label: "Beach Tennis", hint: "Arena oficial 20×11m, grátis para hóspedes" },
+    ]}
+  />
+
+  <CTAFinal client:load />
+</SectionLayout>

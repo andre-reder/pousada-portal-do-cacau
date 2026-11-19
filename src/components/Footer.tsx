@@ -5,6 +5,7 @@ import { pathWithBase } from "@/utils/base";
 
 const NAV_EXPLORE = [
   { href: pathWithBase("#acomodacoes"), label: "Acomodações" },
+  { href: pathWithBase("/cafe-da-manha"), label: "Café da Manhã" },
   { href: pathWithBase("#comodidades"), label: "Comodidades" },
   { href: pathWithBase("#pets"), label: "Pet Friendly" },
   { href: pathWithBase("#ecoturismo"), label: "Ecoturismo" },
